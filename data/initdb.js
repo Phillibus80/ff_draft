@@ -3,8 +3,8 @@ const path = require('path');
 const fs = require('fs');
 const db = sql('stats.db');
 
-const data_22_path = path.join(__dirname, '/data/2022.json');
-const data_23_path = path.join(__dirname, '/data/2023.json');
+const data_22_path = path.join(__dirname, '2022.json');
+const data_23_path = path.join(__dirname, '2023.json');
 
 db.prepare(`
     CREATE TABLE IF NOT EXISTS stats
