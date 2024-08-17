@@ -1,4 +1,4 @@
-export const playerStats22 = [
+[
   {
     "NAME": "Patrick Mahomes",
     "TEAM": "KC",
@@ -15,7 +15,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 24.6,
+    "FPTSG": 24.6,
     "FPTS": 417.4
   },
   {
@@ -35,7 +35,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 24.7,
+    "FPTSG": 24.7,
     "FPTS": 395.5
   },
   {
@@ -55,7 +55,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 25.2,
+    "FPTSG": 25.2,
     "FPTS": 378
   },
   {
@@ -75,7 +75,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 21.9,
+    "FPTSG": 21.9,
     "FPTS": 372.7
   },
   {
@@ -95,7 +95,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 21.7,
+    "FPTSG": 21.7,
     "FPTS": 368.7
   },
   {
@@ -115,7 +115,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 21,
+    "FPTSG": 21,
     "FPTS": 356.4
   },
   {
@@ -135,7 +135,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 21.9,
+    "FPTSG": 21.9,
     "FPTS": 350.7
   },
   {
@@ -155,7 +155,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 20.4,
+    "FPTSG": 20.4,
     "FPTS": 347.2
   },
   {
@@ -175,7 +175,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 19.7,
+    "FPTSG": 19.7,
     "FPTS": 335.5
   },
   {
@@ -195,7 +195,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 19.3,
+    "FPTSG": 19.3,
     "FPTS": 328.3
   },
   {
@@ -215,7 +215,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 19.8,
+    "FPTSG": 19.8,
     "FPTS": 316.6
   },
   {
@@ -235,7 +235,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 18.6,
+    "FPTSG": 18.6,
     "FPTS": 316.3
   },
   {
@@ -255,7 +255,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 17.9,
+    "FPTSG": 17.9,
     "FPTS": 303.9
   },
   {
@@ -275,7 +275,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 18.9,
+    "FPTSG": 18.9,
     "FPTS": 302.8
   },
   {
@@ -295,7 +295,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 17.7,
+    "FPTSG": 17.7,
     "FPTS": 301.6
   },
   {
@@ -315,7 +315,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 17.6,
+    "FPTSG": 17.6,
     "FPTS": 299.6
   },
   {
@@ -335,7 +335,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 19.7,
+    "FPTSG": 19.7,
     "FPTS": 296
   },
   {
@@ -355,7 +355,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 17.4,
+    "FPTSG": 17.4,
     "FPTS": 295.6
   },
   {
@@ -375,7 +375,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 17.2,
+    "FPTSG": 17.2,
     "FPTS": 291.6
   },
   {
@@ -395,7 +395,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 18.1,
+    "FPTSG": 18.1,
     "FPTS": 289
   },
   {
@@ -415,7 +415,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 16.7,
+    "FPTSG": 16.7,
     "FPTS": 284.3
   },
   {
@@ -435,7 +435,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 17.8,
+    "FPTSG": 17.8,
     "FPTS": 284
   },
   {
@@ -455,7 +455,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 16.6,
+    "FPTSG": 16.6,
     "FPTS": 281.4
   },
   {
@@ -475,7 +475,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 16.5,
+    "FPTSG": 16.5,
     "FPTS": 281.3
   },
   {
@@ -495,7 +495,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 16,
+    "FPTSG": 16,
     "FPTS": 271.7
   },
   {
@@ -515,7 +515,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 16.7,
+    "FPTSG": 16.7,
     "FPTS": 267.6
   },
   {
@@ -535,7 +535,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 15.2,
+    "FPTSG": 15.2,
     "FPTS": 259.2
   },
   {
@@ -555,7 +555,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 15,
+    "FPTSG": 15,
     "FPTS": 254.6
   },
   {
@@ -575,7 +575,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 14.7,
+    "FPTSG": 14.7,
     "FPTS": 249.1
   },
   {
@@ -595,7 +595,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 15.6,
+    "FPTSG": 15.6,
     "FPTS": 248.8
   },
   {
@@ -615,7 +615,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 14.6,
+    "FPTSG": 14.6,
     "FPTS": 248.6
   },
   {
@@ -635,7 +635,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 14.5,
+    "FPTSG": 14.5,
     "FPTS": 246
   },
   {
@@ -655,7 +655,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 20.2,
+    "FPTSG": 20.2,
     "FPTS": 242.4
   },
   {
@@ -675,7 +675,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 14.2,
+    "FPTSG": 14.2,
     "FPTS": 241.9
   },
   {
@@ -695,7 +695,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 17.1,
+    "FPTSG": 17.1,
     "FPTS": 239.5
   },
   {
@@ -715,7 +715,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 14.1,
+    "FPTSG": 14.1,
     "FPTS": 239.2
   },
   {
@@ -735,7 +735,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 14,
+    "FPTSG": 14,
     "FPTS": 237.8
   },
   {
@@ -755,7 +755,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 14.8,
+    "FPTSG": 14.8,
     "FPTS": 237.3
   },
   {
@@ -775,7 +775,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 19.7,
+    "FPTSG": 19.7,
     "FPTS": 236.1
   },
   {
@@ -795,7 +795,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 17.8,
+    "FPTSG": 17.8,
     "FPTS": 230.9
   },
   {
@@ -815,7 +815,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 13.5,
+    "FPTSG": 13.5,
     "FPTS": 229
   },
   {
@@ -835,7 +835,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 13.4,
+    "FPTSG": 13.4,
     "FPTS": 227.8
   },
   {
@@ -855,7 +855,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 13.3,
+    "FPTSG": 13.3,
     "FPTS": 226.8
   },
   {
@@ -875,7 +875,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 14.1,
+    "FPTSG": 14.1,
     "FPTS": 226.1
   },
   {
@@ -895,7 +895,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 13.3,
+    "FPTSG": 13.3,
     "FPTS": 225.9
   },
   {
@@ -915,7 +915,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 15.1,
+    "FPTSG": 15.1,
     "FPTS": 225.8
   },
   {
@@ -935,7 +935,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 15,
+    "FPTSG": 15,
     "FPTS": 225.4
   },
   {
@@ -955,7 +955,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 13.1,
+    "FPTSG": 13.1,
     "FPTS": 223.5
   },
   {
@@ -975,7 +975,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 14.9,
+    "FPTSG": 14.9,
     "FPTS": 222.8
   },
   {
@@ -995,7 +995,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 13.8,
+    "FPTSG": 13.8,
     "FPTS": 220.9
   },
   {
@@ -1015,7 +1015,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 14.6,
+    "FPTSG": 14.6,
     "FPTS": 219.1
   },
   {
@@ -1035,7 +1035,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 12.7,
+    "FPTSG": 12.7,
     "FPTS": 216.7
   },
   {
@@ -1055,7 +1055,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 13.5,
+    "FPTSG": 13.5,
     "FPTS": 216.5
   },
   {
@@ -1075,7 +1075,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 12.7,
+    "FPTSG": 12.7,
     "FPTS": 215.7
   },
   {
@@ -1095,7 +1095,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 12.7,
+    "FPTSG": 12.7,
     "FPTS": 215.4
   },
   {
@@ -1115,7 +1115,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 14.1,
+    "FPTSG": 14.1,
     "FPTS": 211.7
   },
   {
@@ -1135,7 +1135,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 12.1,
+    "FPTSG": 12.1,
     "FPTS": 205.1
   },
   {
@@ -1155,7 +1155,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 13.6,
+    "FPTSG": 13.6,
     "FPTS": 204.2
   },
   {
@@ -1175,7 +1175,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 13.5,
+    "FPTSG": 13.5,
     "FPTS": 202.5
   },
   {
@@ -1195,7 +1195,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 22.4,
+    "FPTSG": 22.4,
     "FPTS": 201.4
   },
   {
@@ -1215,7 +1215,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 18.2,
+    "FPTSG": 18.2,
     "FPTS": 200.5
   },
   {
@@ -1235,7 +1235,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 1,
     "FR": 0,
-    "FPTS/G": 13.4,
+    "FPTSG": 13.4,
     "FPTS": 200.5
   },
   {
@@ -1255,7 +1255,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 15.4,
+    "FPTSG": 15.4,
     "FPTS": 200.2
   },
   {
@@ -1275,7 +1275,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 2,
     "FR": 2,
-    "FPTS/G": 11.7,
+    "FPTSG": 11.7,
     "FPTS": 199.2
   },
   {
@@ -1295,7 +1295,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 11.7,
+    "FPTSG": 11.7,
     "FPTS": 199.1
   },
   {
@@ -1315,7 +1315,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 16.6,
+    "FPTSG": 16.6,
     "FPTS": 198.6
   },
   {
@@ -1335,7 +1335,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 1,
     "FR": 0,
-    "FPTS/G": 13.2,
+    "FPTSG": 13.2,
     "FPTS": 198.2
   },
   {
@@ -1355,7 +1355,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 12.4,
+    "FPTSG": 12.4,
     "FPTS": 198.1
   },
   {
@@ -1375,7 +1375,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 15.1,
+    "FPTSG": 15.1,
     "FPTS": 196.6
   },
   {
@@ -1395,7 +1395,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 11.5,
+    "FPTSG": 11.5,
     "FPTS": 196.3
   },
   {
@@ -1415,7 +1415,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 13.7,
+    "FPTSG": 13.7,
     "FPTS": 191.1
   },
   {
@@ -1435,7 +1435,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 12.7,
+    "FPTSG": 12.7,
     "FPTS": 190.5
   },
   {
@@ -1455,7 +1455,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 12.4,
+    "FPTSG": 12.4,
     "FPTS": 185.8
   },
   {
@@ -1475,7 +1475,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 11.6,
+    "FPTSG": 11.6,
     "FPTS": 185.3
   },
   {
@@ -1495,7 +1495,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 12.1,
+    "FPTSG": 12.1,
     "FPTS": 181.5
   },
   {
@@ -1515,7 +1515,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 10.6,
+    "FPTSG": 10.6,
     "FPTS": 180.7
   },
   {
@@ -1535,7 +1535,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 12.9,
+    "FPTSG": 12.9,
     "FPTS": 180.3
   },
   {
@@ -1555,7 +1555,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 3,
     "FR": 1,
-    "FPTS/G": 10.6,
+    "FPTSG": 10.6,
     "FPTS": 180.2
   },
   {
@@ -1575,7 +1575,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 10.6,
+    "FPTSG": 10.6,
     "FPTS": 180
   },
   {
@@ -1595,7 +1595,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 10.5,
+    "FPTSG": 10.5,
     "FPTS": 178.6
   },
   {
@@ -1615,7 +1615,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 11.1,
+    "FPTSG": 11.1,
     "FPTS": 177.9
   },
   {
@@ -1635,7 +1635,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 2,
     "FF": 1,
     "FR": 0,
-    "FPTS/G": 10.5,
+    "FPTSG": 10.5,
     "FPTS": 177.9
   },
   {
@@ -1655,7 +1655,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 11.1,
+    "FPTSG": 11.1,
     "FPTS": 177.7
   },
   {
@@ -1675,7 +1675,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 3,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 10.4,
+    "FPTSG": 10.4,
     "FPTS": 177.2
   },
   {
@@ -1695,7 +1695,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 10.4,
+    "FPTSG": 10.4,
     "FPTS": 176.9
   },
   {
@@ -1715,7 +1715,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 13.6,
+    "FPTSG": 13.6,
     "FPTS": 176.5
   },
   {
@@ -1735,7 +1735,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 10.4,
+    "FPTSG": 10.4,
     "FPTS": 176.3
   },
   {
@@ -1755,7 +1755,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 11.7,
+    "FPTSG": 11.7,
     "FPTS": 174.8
   },
   {
@@ -1775,7 +1775,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 3,
     "FR": 0,
-    "FPTS/G": 10.3,
+    "FPTSG": 10.3,
     "FPTS": 174.8
   },
   {
@@ -1795,7 +1795,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 12.4,
+    "FPTSG": 12.4,
     "FPTS": 174.2
   },
   {
@@ -1815,7 +1815,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 11.4,
+    "FPTSG": 11.4,
     "FPTS": 171.6
   },
   {
@@ -1835,7 +1835,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 2,
     "FR": 0,
-    "FPTS/G": 10.7,
+    "FPTSG": 10.7,
     "FPTS": 170.8
   },
   {
@@ -1855,7 +1855,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 12.1,
+    "FPTSG": 12.1,
     "FPTS": 170.1
   },
   {
@@ -1875,7 +1875,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 1,
     "FR": 0,
-    "FPTS/G": 10.6,
+    "FPTSG": 10.6,
     "FPTS": 169.3
   },
   {
@@ -1895,7 +1895,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 10.5,
+    "FPTSG": 10.5,
     "FPTS": 168.6
   },
   {
@@ -1915,7 +1915,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 13,
+    "FPTSG": 13,
     "FPTS": 168.4
   },
   {
@@ -1935,7 +1935,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 10.5,
+    "FPTSG": 10.5,
     "FPTS": 168.3
   },
   {
@@ -1955,7 +1955,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 9.9,
+    "FPTSG": 9.9,
     "FPTS": 167.6
   },
   {
@@ -1975,7 +1975,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 10.4,
+    "FPTSG": 10.4,
     "FPTS": 167.1
   },
   {
@@ -1995,7 +1995,7 @@ export const playerStats22 = [
     "DEFENSIVE_INT": 0,
     "FF": 0,
     "FR": 0,
-    "FPTS/G": 9.8,
+    "FPTSG": 9.8,
     "FPTS": 166.5
   }
 ]
