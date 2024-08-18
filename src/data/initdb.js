@@ -31,6 +31,16 @@ db.prepare(`
     )
 `).run();
 
+db.prepare(`
+    CREATE TABLE IF NOT EXISTS messages
+    (
+        id            INTEGER PRIMARY KEY AUTOINCREMENT,
+        client_offset TEXT UNIQUE,
+        content       TEXT,
+        author        TEXT
+    )
+`).run();
+
 const readData = (filePath, seasonYear) => {
     const data = fs.readFileSync(filePath, 'utf-8');
     return JSON.parse(data).map(playerStat => ({...playerStat, YEAR: seasonYear}));
@@ -60,8 +70,7 @@ async function initData() {
                 @FF,
                 @FR,
                 @FPTSG,
-                @FPTS
-               )
+                @FPTS)
     `);
 
     stats22.forEach(stat => statement.run(stat));

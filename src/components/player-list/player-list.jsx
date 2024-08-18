@@ -16,7 +16,7 @@ const PlayerList = async () => {
                     .map(([statKey, playerStat]) => {
                         return (
                             <td
-                                className={statKey === 'FPTS' && styles.statNumber}
+                                className={statKey === 'FPTS' ? styles.statNumber : undefined}
                                 key={`${player.NAME}_${player.YEAR}_${statKey}`}>
                                 {playerStat}
                             </td>
