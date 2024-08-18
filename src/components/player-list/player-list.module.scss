@@ -1,0 +1,14 @@
+.playerListTable {
+  max-width: 350px;
+  max-height: 500px;
+  overflow-y: scroll;
+
+  table {
+    border-collapse: separate;
+    border-spacing: 1rem;
+
+    .statNumber {
+      text-align: center;
+    }
+  }
+}
