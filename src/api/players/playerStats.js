@@ -3,20 +3,21 @@ import slugify from "slugify";
 import xss from "xss";
 import fs from 'node:fs';
 import path from 'node:path';
-import {PositionEnum} from "../../constants/player-constants";
+import {PositionEnum} from "@/constants/player-constants";
 
 const db = sql('stats.db');
 
-export const getAllPlayers = (position = '', seasonYear = 2024) => {
+export const getAllPlayers = async (position = '', seasonYear = 2023) => {
     try {
         if (PositionEnum.includes(position)) {
             return db.prepare(`SELECT *
                                FROM stats
                                WHERE POS = ?
-                                 AND YEAR = ?`).get(position, seasonYear);
+                                 AND YEAR = ?`).all(position, seasonYear);
         } else {
             return db.prepare(`SELECT *
-                               FROM stats`).all();
+                               FROM stats
+                               WHERE YEAR = ?`).all(seasonYear);
         }
     } catch (e) {
         console.error('Error getting the players from the database.', e.getError());
