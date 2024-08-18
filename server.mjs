@@ -16,7 +16,11 @@ app.prepare().then(() => {
 
     io.on("connection", (socket) => {
         socket.emit('Welcome', 'Welcome Fucker');
-        console.log('Here')
+        console.log('Here');
+
+        socket.on('chat message', payload => {
+            console.log('Payload:: ', payload);
+        })
     });
 
     httpServer
