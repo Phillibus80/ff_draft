@@ -13,6 +13,18 @@ const handler = app.getRequestHandler();
 
 const db = sql('stats.db');
 
+function getAllMessages() {
+    try {
+        return db.prepare(`
+            SELECT *
+            FROM messages
+        `).all();
+
+    } catch (e) {
+        console.error('Error getting the messages. ', e.errorMessage);
+    }
+}
+
 function addMessage(message) {
     try {
         const cleanedMessage = xss(message);
@@ -34,13 +46,24 @@ app.prepare().then(() => {
     const io = new Server(httpServer);
 
     io.on("connection", (socket) => {
-        socket.emit('Welcome', 'Welcome Fucker');
-        console.log('Here');
+        const currentMessages = getAllMessages();
+        socket.emit('Welcome', {
+            greeting: 'Welcome Fucking Fucker',
+            messages: currentMessages
+        });
 
-        socket.on('chat message', ({message, author}) => {
+        socket.on('add message', ({message, author}) => {
             console.log('Payload:: ', message, author);
-            return addMessage(message);
-        })
+            addMessage(message);
+
+            socket.emit('message response', {
+                messages: currentMessages
+            });
+        });
+
+        socket.on('end', () => {
+           socket.disconnect();
+        });
     });
 
     httpServer
