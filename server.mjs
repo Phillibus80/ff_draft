@@ -55,10 +55,6 @@ app.prepare().then(() => {
         socket.on('add message', ({message, author}) => {
             console.log('Payload:: ', message, author);
             addMessage(message);
-
-            socket.emit('message response', {
-                messages: currentMessages
-            });
         });
 
         socket.on('end', () => {
