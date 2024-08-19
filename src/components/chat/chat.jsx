@@ -1,17 +1,15 @@
 "use client";
 
 import {io} from 'socket.io-client';
-import {useRef, useState} from "react";
+import {useRef} from "react";
 
 const Chat = () => {
     const inputRef = useRef();
     const socket = io();
-    const [currentMessages, setCurrentMessages] = useState([]);
-    const updateCurrentMessages = message => setCurrentMessages(messages => [...messages, message]);
 
     socket.on('Welcome', () => console.log('Welcomed the fuck'))
 
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault();
         const message = inputRef.current.value;
 
@@ -21,7 +19,6 @@ const Chat = () => {
                 author: 'Phillibus'
             });
 
-            updateCurrentMessages(message);
             inputRef.current.value = '';
         }
     };
@@ -29,11 +26,11 @@ const Chat = () => {
     return (
         <>
             <ul id="messages">
-                {
-                    currentMessages.map(message => <li key={message}>
-                        {message}
-                    </li>)
-                }
+                {/*{*/}
+                {/*    currentMessages.map(message => <li key={message}>*/}
+                {/*        {message}*/}
+                {/*    </li>)*/}
+                {/*}*/}
             </ul>
             <form id='form' onSubmit={handleSubmit} action=''>
                 <input ref={inputRef} autoComplete='off'/>

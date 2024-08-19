@@ -1,13 +1,32 @@
-import { createServer } from "node:http";
+import {createServer} from "node:http";
 import next from "next";
-import { Server } from "socket.io";
+import {Server} from "socket.io";
+import sql from "better-sqlite3";
+import xss from "xss";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
 const port = 3000;
 // when using middleware `hostname` and `port` must be provided below
-const app = next({ dev, hostname, port });
+const app = next({dev, hostname, port});
 const handler = app.getRequestHandler();
+
+const db = sql('stats.db');
+
+function addMessage(message) {
+    try {
+        const cleanedMessage = xss(message);
+        console.log('Clean:: ', cleanedMessage)
+
+        return db.prepare(`
+            INSERT INTO messages
+            VALUES (null, 0, @content, @author)
+        `).run({content: cleanedMessage, author: 'Phillibus'})
+
+    } catch (e) {
+        console.error('Error adding the new message. ', e.errorMessage);
+    }
+}
 
 app.prepare().then(() => {
     const httpServer = createServer(handler);
@@ -18,8 +37,9 @@ app.prepare().then(() => {
         socket.emit('Welcome', 'Welcome Fucker');
         console.log('Here');
 
-        socket.on('chat message', payload => {
-            console.log('Payload:: ', payload);
+        socket.on('chat message', ({message, author}) => {
+            console.log('Payload:: ', message, author);
+            return addMessage(message);
         })
     });
 

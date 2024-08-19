@@ -1,7 +1,7 @@
 const sql = require('better-sqlite3');
 const path = require('path');
 const fs = require('fs');
-const db = sql('stats.db');
+const db = sql('../../stats.db');
 
 const data_22_path = path.join(__dirname, '2022.json');
 const data_23_path = path.join(__dirname, '2023.json');
@@ -35,7 +35,7 @@ db.prepare(`
     CREATE TABLE IF NOT EXISTS messages
     (
         id            INTEGER PRIMARY KEY AUTOINCREMENT,
-        client_offset TEXT UNIQUE,
+        client_offset INTEGER default 0,
         content       TEXT,
         author        TEXT
     )

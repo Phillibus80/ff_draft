@@ -1,8 +1,10 @@
+'use server';
+
 import sql from 'better-sqlite3';
-import slugify from "slugify";
-import xss from "xss";
-import fs from 'node:fs';
-import path from 'node:path';
+// import slugify from "slugify";
+// import xss from "xss";
+// import fs from 'node:fs';
+// import path from 'node:path';
 import {PositionEnum} from "@/constants/player-constants";
 
 const db = sql('stats.db');
@@ -20,7 +22,7 @@ export const getAllPlayers = async (position = '', seasonYear = 2023) => {
                                WHERE YEAR = ?`).all(seasonYear);
         }
     } catch (e) {
-        console.error('Error getting the players from the database.', e.getError());
+        console.error('Error getting the players from the database.', e.errorMessage);
     }
 };
 
@@ -32,7 +34,7 @@ export const getPlayer = slug => {
             WHERE NAME = ?
         `).get(slug);
     } catch (e) {
-        console.error(`Error getting the player: ${slug} from the database.`, e.getError());
+        console.error(`Error getting the player: ${slug} from the database.`, e.errorMessage);
     }
 };
 
