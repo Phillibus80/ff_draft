@@ -1,31 +1,27 @@
 "use client";
 
-import {io} from 'socket.io-client';
 import {useRef} from "react";
 import ChatWindow from "@/api/chat/chat-window";
+import socket from "@/components/socket/socket";
+import {debounce} from "@/util/utils";
 
 const Chat = () => {
     const inputRef = useRef();
-    const socket = io();
 
-    socket.on('Welcome',
-        ({greeting, messages}) => {
-            console.log(greeting, ' : ', messages)
-        }
-    )
+    const debouncedSubmit = debounce(message => {
+       socket.emit('add message', {
+          message: message,
+          author: 'Phillibus'
+       });
+    }, 300);
 
     const handleSubmit = async event => {
         event.preventDefault();
         const message = inputRef.current.value;
 
         if (message) {
-
             // Send the signal to update the database
-            socket.emit('add message', {
-                message: message,
-                author: 'Phillibus'
-            });
-
+            debouncedSubmit(message);
 
             // Reset the field
             inputRef.current.value = '';

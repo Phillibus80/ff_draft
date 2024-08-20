@@ -54,7 +54,8 @@ app.prepare().then(() => {
 
         socket.on('add message', ({message, author}) => {
             console.log('Payload:: ', message, author);
-            addMessage(message);
+            const newMessage = addMessage(message);
+            io.emit('message response', {message: newMessage});
         });
 
         socket.on('end', () => {

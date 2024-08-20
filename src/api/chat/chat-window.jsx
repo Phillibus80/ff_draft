@@ -1,21 +1,27 @@
 "use client";
 
-import {io} from 'socket.io-client';
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import socket from "@/components/socket/socket";
 
 const ChatWindow = () => {
     const [currentMessages, setCurrentMessages] = useState([]);
-    const socket = io();
 
-    socket.on('Welcome', ({messages}) => {
-        console.log('Messages:: ', messages)
-        setCurrentMessages(messages);
-    });
+    useEffect(() => {
+        socket.on('Welcome', ({messages}) => {
+            console.log('Messages:: ', messages)
+            setCurrentMessages(messages);
+        });
 
-    socket.on('message response', ({messages}) => {
-        console.log('Messages:: ', messages)
-        setCurrentMessages(messages);
-    });
+        socket.on('message response', ({message}) => {
+            console.log('Messages:: ', message)
+            setCurrentMessages(messages => [...messages, message]);
+        });
+
+        return () => {
+            socket.off('Welcome');
+            socket.off('message response');
+        };
+    }, []);
 
     return <ul id="messages">
         {
