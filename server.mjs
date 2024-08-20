@@ -54,12 +54,16 @@ app.prepare().then(() => {
 
         socket.on('add message', ({message, author}) => {
             console.log('Payload:: ', message, author);
-            const newMessage = addMessage(message);
-            io.emit('message response', {message: newMessage});
+            addMessage(message);
+            io.emit('message response', {
+                addedMessage: {
+                    content: message
+                }
+            });
         });
 
         socket.on('end', () => {
-           socket.disconnect();
+            socket.disconnect();
         });
     });
 

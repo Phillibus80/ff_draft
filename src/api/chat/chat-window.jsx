@@ -7,18 +7,12 @@ const ChatWindow = () => {
     const [currentMessages, setCurrentMessages] = useState([]);
 
     useEffect(() => {
-        socket.on('Welcome', ({messages}) => {
-            console.log('Messages:: ', messages)
-            setCurrentMessages(messages);
-        });
-
-        socket.on('message response', ({message}) => {
-            console.log('Messages:: ', message)
-            setCurrentMessages(messages => [...messages, message]);
+        socket.on('message response', ({addedMessage}) => {
+            console.log('Added Message:: ', addedMessage)
+            setCurrentMessages(messages => [...messages, addedMessage]);
         });
 
         return () => {
-            socket.off('Welcome');
             socket.off('message response');
         };
     }, []);
@@ -27,11 +21,15 @@ const ChatWindow = () => {
         {
             currentMessages.length > 0
             && currentMessages?.map(
-                (message, index) => <li key={`${message.content}_${index}`}>
-                    {message.content}
-                </li>)
+                (message, index) => {
+                    console.log(message);
+                    return <li key={`${message.content}_${index}`}>
+                        {message.content}
+                    </li>
+                }
+            )
         }
     </ul>
-};
+}
 
 export default ChatWindow;

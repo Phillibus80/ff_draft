@@ -1,12 +1,22 @@
 "use client";
 
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 import ChatWindow from "@/api/chat/chat-window";
 import socket from "@/components/socket/socket";
 import {debounce} from "@/util/utils";
 
 const Chat = () => {
     const inputRef = useRef();
+
+    useEffect(() => {
+        socket.on('Welcome', ({messages}) => {
+            console.log('Messages:: ', messages)
+        });
+
+        return () => {
+            socket.off('Welcome');
+        };
+    }, []);
 
     const debouncedSubmit = debounce(message => {
        socket.emit('add message', {
