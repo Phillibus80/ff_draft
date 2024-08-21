@@ -28,7 +28,6 @@ function getAllMessages() {
 function addMessage(message) {
     try {
         const cleanedMessage = xss(message);
-        console.log('Clean:: ', cleanedMessage)
 
         return db.prepare(`
             INSERT INTO messages
@@ -47,19 +46,46 @@ app.prepare().then(() => {
 
     io.on("connection", (socket) => {
         const currentMessages = getAllMessages();
-        socket.emit('Welcome', {
-            greeting: 'Welcome Fucking Fucker',
-            messages: currentMessages
+
+        // Join a specific room
+        socket.on("join room", ({room}) => {
+            socket.join(room);
+
+            // Emit a welcome message to just the client in the room
+            socket.emit("welcome message", {
+                message: `Welcome User -> ${socket.id} to room:: ${room}`,
+                messages: currentMessages
+            });
+
+            // Broadcast to everyone in the room except the sender
+            socket.to(room).emit("room message", {messageToSend: `${socket.id} has joined the room`});
         });
 
+        // Handle a message sent to a specific room
+        // socket.on("send message", ({room: {room}, message}) => {
+        //     io.to(room).emit("message", {messageToSend: `${socket.id}: ${message}`});
+        // });
+
+        // Leave a room
+        // socket.on("leave room", ({room}) => {
+        //     socket.leave(room);
+        //     console.log(`User ${socket.id} left room: ${room}`);
+        //     socket.to(room).emit("message", `${socket.id} has left the room`);
+        // });
+
+        // Adding a new message
         socket.on('add message', ({message, author}) => {
-            console.log('Payload:: ', message, author);
             addMessage(message);
             io.emit('message response', {
                 addedMessage: {
                     content: message
                 }
             });
+        });
+
+        // Disconnecting
+        socket.on("disconnect", () => {
+            console.log(`User disconnected: ${socket.id}`);
         });
 
         socket.on('end', () => {
