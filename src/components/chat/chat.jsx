@@ -1,20 +1,27 @@
 "use client";
 
-import {useEffect, useRef} from "react";
-import ChatWindow from "@/api/chat/chat-window";
+import {useEffect, useRef, useState} from "react";
+import ChatWindow from "@/components/chat/chat-window";
 import socket from "@/components/socket/socket";
 import {debounce} from "@/util/utils";
 
 const Chat = () => {
     const inputRef = useRef();
+    const [currentMessages, setCurrentMessages] = useState([]);
 
     useEffect(() => {
         socket.on('Welcome', ({messages}) => {
             console.log('Messages:: ', messages)
         });
 
+        socket.on('message response', ({addedMessage}) => {
+            console.log('Added Message:: ', addedMessage)
+            setCurrentMessages(messages => [...messages, addedMessage]);
+        });
+
         return () => {
             socket.off('Welcome');
+            socket.off('message response');
         };
     }, []);
 
@@ -40,7 +47,7 @@ const Chat = () => {
 
     return (
         <>
-            <ChatWindow />
+            <ChatWindow messages={currentMessages} />
             <form id='form' onSubmit={handleSubmit} action=''>
                 <input ref={inputRef} autoComplete='off'/>
                 <button>Send</button>
