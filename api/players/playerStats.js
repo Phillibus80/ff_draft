@@ -5,7 +5,7 @@ import sql from 'better-sqlite3';
 // import xss from "xss";
 // import fs from 'node:fs';
 // import path from 'node:path';
-import {PositionEnum} from "@/constants/player-constants";
+import {PositionEnum} from "../../constants/player-constants";
 
 const db = sql('stats.db');
 

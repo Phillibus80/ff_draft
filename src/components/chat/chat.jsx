@@ -3,55 +3,50 @@
 import {useEffect, useRef, useState} from "react";
 import ChatWindow from "@/components/chat/chat-window";
 import socket from "@/components/socket/socket";
-import {debounce} from "@/util/utils";
+import {debounce, dedupMessages} from "@/util/utils";
+import {socketConstants, TEST_SOCKET_ROOM} from "../../../constants/app-constants.mjs";
 
 const Chat = () => {
     const inputRef = useRef();
     const [currentMessages, setCurrentMessages] = useState([]);
 
-    const dedupMessages = (messages = [], messageToAdd = '') => messageToAdd
-        ? [...new Set(
-            [...messages,
-                {content: messageToAdd}]
-                .map(({content}) => content)
-        )].map(txt => ({content: txt}))
-        : [];
-
     useEffect(() => {
         // Joining the room
-        socket.emit('join room', {
-            room: 'Draft room'
+        socket.emit(socketConstants.JOIN_ROOM, {
+            room: TEST_SOCKET_ROOM
         });
 
-        socket.on('welcome message', ({message: greeting, messages}) => {
+        socket.on(socketConstants.WELCOME_MESSAGE, ({greeting, messages}) => {
             setCurrentMessages(prevMessages => (messages.length === 0)
                 ? dedupMessages(prevMessages, greeting)
                 : dedupMessages(messages, greeting));
         });
 
-        socket.on("room message", ({messageToSend}) =>
-            setCurrentMessages(messages => dedupMessages(messages, messageToSend))
+        socket.on(socketConstants.NEW_USER_JOINED, ({message}) =>
+            setCurrentMessages(
+                pastMessages => dedupMessages(pastMessages, message))
         );
 
         // Response from adding a message
-        socket.on('message response', ({addedMessage}) =>
+        socket.on(socketConstants.NEW_MESSAGE_RECEIVED, ({addedMessage}) =>
             setCurrentMessages(messages => [...messages, addedMessage]));
 
         return () => {
             // socket.emit("leave room", {
-            //     room: 'Draft room'
+            //     room: TEST_SOCKET_ROOM
             // });
-            socket.off('join room');
-            socket.off('welcome message');
-            socket.off('message');
-            socket.off('message response');
+            socket.off(socketConstants.JOIN_ROOM);
+            socket.off(socketConstants.WELCOME_MESSAGE);
+            socket.off(socketConstants.NEW_USER_JOINED);
+            socket.off(socketConstants.NEW_MESSAGE_RECEIVED);
         };
     }, []);
 
-    const debouncedSubmit = debounce(message => {
-        socket.emit('add message', {
+    // TODO implement the author
+    const debouncedSubmit = debounce((message, author = 'Phillibus') => {
+        socket.emit(socketConstants.ADD_MESSAGE, {
             message: message,
-            author: 'Phillibus'
+            author: author
         });
     }, 300);
 
