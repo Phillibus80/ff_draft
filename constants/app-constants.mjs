@@ -13,4 +13,5 @@ export const socketConstants = {
     ERROR: 'error'
 };
 
+export const PositionEnum = ['QB', 'RB', 'WR', 'TE', 'K', 'DE', 'DT', 'LB', 'CB', 'S', 'KR', 'PR'];
 export const TEST_SOCKET_ROOM = 'Draft room';
