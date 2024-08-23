@@ -12,7 +12,7 @@ const PlayerList = async () => {
         return allPlayers.length > 0 && allPlayers.map(player =>
             <tr key={`${player.NAME}_${player.YEAR}`}>{
                 Object.entries(player)
-                    .filter(([key]) => key === 'NAME' || key === 'POS' || key === 'FPTS')
+                    .filter(([key]) => key && key === 'NAME' || key === 'POS' || key === 'FPTS')
                     .map(([statKey, playerStat]) => {
                         return (
                             <td

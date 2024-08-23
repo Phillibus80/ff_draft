@@ -1,5 +1,10 @@
 {
   "projects": {
     "default": "fantasy-football-draft-8c8be"
+  },
+  "dataconnectEmulatorConfig": {
+    "postgres": {
+      "localConnectionString": "postgresql://localhost:5432?sslmode=disable"
+    }
   }
 }
