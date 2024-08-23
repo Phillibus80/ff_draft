@@ -2,7 +2,7 @@ import {createServer} from "node:http";
 import next from "next";
 import {Server} from "socket.io";
 import {socketConstants} from "./constants/app-constants.mjs";
-import {addMessage, getAllMessages} from "./api/chat/messages.mjs";
+import {addMessage, getAllMessages} from "./lib/chat/messages.mjs";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";

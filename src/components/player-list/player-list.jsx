@@ -1,4 +1,4 @@
-import {getAllPlayers} from "../../../api/players/playerStats";
+import {getAllPlayers} from "../../../lib/players/playerStats";
 import styles from './player-list.module.scss';
 
 const PlayerList = async () => {
