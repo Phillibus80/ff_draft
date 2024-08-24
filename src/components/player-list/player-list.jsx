@@ -1,28 +1,30 @@
 import {getAllPlayers} from "../../../lib/players/playerStats";
 import styles from './player-list.module.scss';
 
-const PlayerList = async () => {
+const PlayerList = async (season = 2024) => {
     const allPlayers = await getAllPlayers();
+    const playerObjectArr = Object.values(allPlayers);
+    const lastYear = season - 1;
+    const isOneOfTheVisibleKeys = key => key === 'NAME' || key === 'POS' || key === 'FPTS';
 
-    const getTableHeaders = () => allPlayers[0] && Object.keys(allPlayers[0])
-        .filter(key => key === 'NAME' || key === 'POS' || key === 'FPTS')
+    const getTableHeaders = (playerArr = []) => playerArr[0] && Object.keys(playerArr[0])
+        .filter(key => key && isOneOfTheVisibleKeys(key))
         .map(key => <th key={key}>{key === 'FPTS' ? 'Total Fantasy Points' : key}</th>);
 
-    const getTableBody = () => {
-        return allPlayers.length > 0 && allPlayers.map(player =>
-            <tr key={`${player.NAME}_${player.YEAR}`}>{
-                Object.entries(player)
-                    .filter(([key]) => key && key === 'NAME' || key === 'POS' || key === 'FPTS')
-                    .map(([statKey, playerStat]) => {
-                        return (
+    const getTableBody = (playerArr = []) => {
+        return playerArr.length > 0 && playerArr.map(player =>
+            <tr key={`${player.NAME}_${lastYear}`}>
+                {
+                    Object.entries(player)
+                        .filter(([key]) => key && isOneOfTheVisibleKeys(key))
+                        .map(([statKey, playerStat]) =>
                             <td
                                 className={statKey === 'FPTS' ? styles.statNumber : undefined}
-                                key={`${player.NAME}_${player.YEAR}_${statKey}`}>
+                                key={`${player.NAME}_${lastYear}_${statKey}`}>
                                 {playerStat}
                             </td>
-                        );
-                    })
-            }
+                        )
+                }
             </tr>
         )
     };
@@ -32,11 +34,11 @@ const PlayerList = async () => {
             <table>
                 <thead>
                 <tr>
-                    {getTableHeaders()}
+                    {getTableHeaders(playerObjectArr)}
                 </tr>
                 </thead>
                 <tbody>
-                {getTableBody()}
+                {getTableBody(playerObjectArr)}
                 </tbody>
             </table>
         </section>

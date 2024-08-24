@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node server.js",
+    "emul": "firebase emulators:start",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
