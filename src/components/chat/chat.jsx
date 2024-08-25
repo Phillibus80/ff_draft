@@ -4,7 +4,7 @@ import {useEffect, useRef, useState} from "react";
 import ChatWindow from "@/components/chat/chat-window";
 import socket from "@/components/socket/socket";
 import {debounce, dedupMessages} from "@/util/utils";
-import {socketConstants, TEST_SOCKET_ROOM} from "../../../constants/app-constants.mjs";
+import {socketConstants, TEST_SOCKET_ROOM} from "../../../app-constants.js";
 
 const Chat = () => {
     const inputRef = useRef();
@@ -16,7 +16,7 @@ const Chat = () => {
             room: TEST_SOCKET_ROOM
         });
 
-        socket.on(socketConstants.WELCOME_MESSAGE, ({greeting, messages}) => {
+        socket.on(socketConstants.WELCOME_MESSAGE, ({greeting, messages = []}) => {
             setCurrentMessages(prevMessages => (messages.length === 0)
                 ? dedupMessages(prevMessages, greeting)
                 : dedupMessages(messages, greeting));
