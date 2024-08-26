@@ -13,7 +13,7 @@ const Chat = () => {
     useEffect(() => {
         getAllMessages(setCurrentMessages);
 
-        return () => closeDatabaseConnection();
+       // return () => closeDatabaseConnection();
     }, []);
 
     const debouncedSubmit = debounce(async (message, author = 'Phillibus') => {

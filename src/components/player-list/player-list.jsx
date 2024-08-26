@@ -1,15 +1,17 @@
 import {getAllPlayers} from "../../../lib/players/playerStats";
 import styles from './player-list.module.scss';
+import {PLAYER_KEYS} from "../../../app-constants.js";
 
-const PlayerList = async (season = 2024) => {
+const PlayerList = async () => {
     const allPlayers = await getAllPlayers();
     const playerObjectArr = Object.values(allPlayers);
-    const lastYear = season - 1;
-    const isOneOfTheVisibleKeys = key => key === 'NAME' || key === 'POS' || key === 'FPTS';
+    const date = new Date();
+    const lastYear = date.getFullYear() - 1;
+    const isOneOfTheVisibleKeys = key => key === PLAYER_KEYS.NAME || key === PLAYER_KEYS.POSITION || key === PLAYER_KEYS.PTS;
 
     const getTableHeaders = (playerArr = []) => playerArr[0] && Object.keys(playerArr[0])
         .filter(key => key && isOneOfTheVisibleKeys(key))
-        .map(key => <th key={key}>{key === 'FPTS' ? 'Total Fantasy Points' : key}</th>);
+        .map(key => <th key={key}>{key === PLAYER_KEYS.PTS ? 'Total Fantasy Points' : key}</th>);
 
     const getTableBody = (playerArr = []) => {
         return playerArr.length > 0 && playerArr.map(player =>
@@ -19,7 +21,7 @@ const PlayerList = async (season = 2024) => {
                         .filter(([key]) => key && isOneOfTheVisibleKeys(key))
                         .map(([statKey, playerStat]) =>
                             <td
-                                className={statKey === 'FPTS' ? styles.statNumber : undefined}
+                                className={statKey === PLAYER_KEYS.PTS ? styles.statNumber : undefined}
                                 key={`${player.NAME}_${lastYear}_${statKey}`}>
                                 {playerStat}
                             </td>

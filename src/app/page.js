@@ -5,9 +5,7 @@ import Chat from "@/components/chat/chat";
 export default function Home() {
     return (
         <main className={styles.main}>
-            <PlayerList
-                season={2024}
-            />
+            <PlayerList />
             <Chat/>
         </main>
     );
