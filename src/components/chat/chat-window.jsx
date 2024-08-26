@@ -3,9 +3,11 @@ const ChatWindow = ({messages = []}) =>
         {
             messages.length > 0
             && messages.map((message, index) =>
-                <li key={`${message.content}_${index}`}>
-                    {message.content}
-                </li>)
+                <li key={`${message.MESSAGE}_${index}`}>
+                    <sup>{message.USERNAME}</sup>
+                    <p>&nbsp;&nbsp;{message.MESSAGE}</p>
+                </li>
+            )
         }
     </ul>;
 
