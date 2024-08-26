@@ -4,7 +4,7 @@ import {useEffect, useRef, useState} from "react";
 import ChatWindow from "@/components/chat/chat-window";
 import {debounce} from "@/util/utils";
 import {addMessage, getAllMessages} from "../../../lib/chat/messages.js";
-import {closeDatabaseConnection} from "../../../lib/firebaseConfig.js";
+// import {closeDatabaseConnection} from "../../../lib/firebaseConfig.js";
 
 const Chat = () => {
     const inputRef = useRef();

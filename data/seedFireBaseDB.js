@@ -39,10 +39,20 @@ async function seedDataToDB(jsonData, dbType, seasonYear = PREVIOUS_YEAR) {
     }
 }
 
-seedDataToDB(seasonStats23, 'stats');
-seedDataToDB(seasonStats22, 'stats', 2022);
-seedDataToDB(userMock, 'users');
-seedDataToDB(messageMock, 'messages');
-seedDataToDB(leagueMock, 'leagues');
+const seedingPromises = async () => Promise.all([
+    seedDataToDB(seasonStats23, 'stats'),
+    seedDataToDB(seasonStats22, 'stats', 2022),
+    seedDataToDB(userMock, 'users'),
+    seedDataToDB(messageMock, 'messages'),
+    seedDataToDB(leagueMock, 'leagues')
+]);
 
-closeDatabaseConnection();
+seedingPromises()
+    .then(() => {
+        console.log('Database successfully seeded.');
+        closeDatabaseConnection();
+    })
+    .catch(() => {
+        console.error('Failed to successfully seed the database.');
+        closeDatabaseConnection();
+    });
