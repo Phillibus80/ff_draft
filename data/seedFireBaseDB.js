@@ -5,7 +5,7 @@ import users from './user-mock.json' assert {type: 'json'};
 import messages from './message-mock.json' assert {type: 'json'};
 import leagues from './league-mock.json' assert {type: 'json'};
 
-import {database as db} from "../lib/firebaseConfig.js";
+import {closeDatabaseConnection, database as db} from "../lib/firebaseConfig.js";
 import {convertToFirebaseJsonFormat, getDBPath, getDBTypeReadable} from "./data-utils.js";
 import {PREVIOUS_YEAR} from "../app-constants.js";
 
@@ -44,3 +44,5 @@ seedDataToDB(seasonStats22, 'stats', 2022);
 seedDataToDB(userMock, 'users');
 seedDataToDB(messageMock, 'messages');
 seedDataToDB(leagueMock, 'leagues');
+
+closeDatabaseConnection();
