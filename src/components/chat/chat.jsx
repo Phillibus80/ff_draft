@@ -9,11 +9,13 @@ import {addMessage, getAllMessages} from "../../../lib/chat/messages.js";
 const Chat = () => {
     const inputRef = useRef();
     const [currentMessages, setCurrentMessages] = useState([]);
+    // Used for pagination
+    const [lastKey, setLastKey] = useState('');
 
     useEffect(() => {
-        getAllMessages(setCurrentMessages);
+        getAllMessages(setCurrentMessages, lastKey, setLastKey);
 
-       // return () => closeDatabaseConnection();
+        // return () => closeDatabaseConnection();
     }, []);
 
     const debouncedSubmit = debounce(async (message, author = 'Phillibus') => {
@@ -25,7 +27,6 @@ const Chat = () => {
         const message = inputRef.current.value;
 
         if (message) {
-            // Send the signal to update the database
             debouncedSubmit(message);
 
             // Reset the field

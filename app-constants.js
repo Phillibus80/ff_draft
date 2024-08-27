@@ -6,3 +6,5 @@ export const PLAYER_KEYS = {
     POSITION: 'POS',
     PTS: 'FPTS'
 };
+
+export const PAGINATION_SIZE = 25;
