@@ -1,9 +1,10 @@
 import {ref, set} from "firebase/database";
-import data_23 from './2023.json' assert {type: 'json'};
-import data_22 from './2022.json' assert {type: 'json'};
-import users from './user-mock.json' assert {type: 'json'};
-import messages from './message-mock.json' assert {type: 'json'};
-import leagues from './league-mock.json' assert {type: 'json'};
+import data_23 from './mock-data/2023.json' assert {type: 'json'};
+import data_22 from './mock-data/2022.json' assert {type: 'json'};
+import users from './mock-data/user-mock.json' assert {type: 'json'};
+import messages from './mock-data/message-mock.json' assert {type: 'json'};
+import leagues from './mock-data/league-mock.json' assert {type: 'json'};
+import leagueRules from './mock-data/league-rules-mock.json' assert {type: 'json'};
 
 import {closeDatabaseConnection, database as db} from "../lib/firebaseConfig.js";
 import {convertToFirebaseJsonFormat, getDBPath, getDBTypeReadable} from "./data-utils.js";
@@ -15,8 +16,9 @@ const seasonStats22 = convertToFirebaseJsonFormat(data_22);
 const userMock = convertToFirebaseJsonFormat(users, 'USERNAME');
 const messageMock = convertToFirebaseJsonFormat(messages, 'TIMESTAMP');
 const leagueMock = convertToFirebaseJsonFormat(leagues, 'NAME');
+const leagueRulesMock = convertToFirebaseJsonFormat(leagueRules, 'NAME');
 
-const dbTypeEnum = ['stats', 'users', 'messages', 'leagues'];
+const dbTypeEnum = ['stats', 'users', 'messages', 'leagues', 'rules'];
 
 async function seedDataToDB(jsonData, dbType, seasonYear = PREVIOUS_YEAR) {
     const isHandleDBType = dbTypeEnum.some(dbEnum => dbEnum === dbType);
@@ -44,7 +46,8 @@ const seedingPromises = async () => Promise.all([
     seedDataToDB(seasonStats22, 'stats', 2022),
     seedDataToDB(userMock, 'users'),
     seedDataToDB(messageMock, 'messages'),
-    seedDataToDB(leagueMock, 'leagues')
+    seedDataToDB(leagueMock, 'leagues'),
+    seedDataToDB(leagueRulesMock, 'rules')
 ]);
 
 seedingPromises()

@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "NODE_ENV=development node server.js",
     "emul": "firebase emulators:start",
     "seed": "node data/seedFireBaseDB.js",
     "build": "next build",
