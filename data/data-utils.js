@@ -13,6 +13,13 @@ export const convertToFirebaseJsonFormat = (jsonArr, propName = 'NAME') => {
     return JSON.stringify(arr);
 };
 
+export const flattenLeagueRules = rules => rules.reduce(
+    (accum, current) => {
+        const [key, ruleObj] = Object.entries(current);
+        accum[key] = ruleObj;
+        return accum;
+    }, {});
+
 export const getDBPath = (dbType, key, seasonYear = PREVIOUS_YEAR) => {
     switch (dbType) {
         case 'stats':
@@ -23,6 +30,8 @@ export const getDBPath = (dbType, key, seasonYear = PREVIOUS_YEAR) => {
             return `messages/${key}`;
         case 'leagues':
             return `leagues/${key}`;
+        case 'rules':
+            return `rules/${key}`;
     }
 };
 
@@ -36,5 +45,7 @@ export const getDBTypeReadable = dbType => {
             return `Messages`;
         case 'leagues':
             return `Leagues`;
+        case 'rules':
+            return 'League Rules';
     }
 };
