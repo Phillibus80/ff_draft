@@ -12,8 +12,6 @@
     "benchPlayersAllowed": 6,
     "injuredReservedAllowed": true,
     "numberOfIR": 2,
-    "flexAllowed": true,
-    "opAllowed": true,
     "starterPositions": {
       "QB": 1,
       "RB": 2,
@@ -24,7 +22,7 @@
       "K": 1,
       "DEF": 1
     },
-    "positionsAllowed": {
+    "positionMaxAllowed": {
       "QB": 2,
       "RB": 4,
       "WR": 8,

@@ -26,3 +26,14 @@ export const PLAYER_KEYS = {
 };
 
 export const PAGINATION_SIZE = 25;
+
+export const positionOrder = [
+    POSITIONS.QB,
+    POSITIONS.RB,
+    POSITIONS.WR,
+    POSITIONS.TE,
+    POSITIONS.OP,
+    POSITIONS.FLEX,
+    POSITIONS.DEF,
+    POSITIONS.K
+];
