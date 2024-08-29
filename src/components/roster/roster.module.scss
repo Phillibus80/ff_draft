@@ -1,0 +1,12 @@
+.roster {
+  display: flex;
+  flex-direction: column;
+
+  &_header {
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+}

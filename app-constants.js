@@ -4,13 +4,15 @@ export const POSITIONS = {
     WR: 'WR',
     TE: 'TE',
     OP: 'OP',
+    FLEX: 'FLEX',
     K: 'K',
     DE: 'DE',
     LB: 'LB',
     CB: 'CB',
     S: 'S',
     KR: 'KR',
-    PR: 'PR'
+    PR: 'PR',
+    DEF: 'DEF'
 }
 
 export const PositionEnum = Object.values(POSITIONS);
