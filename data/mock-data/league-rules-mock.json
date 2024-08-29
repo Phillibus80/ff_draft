@@ -7,7 +7,7 @@
     "draftStyle": "snake"
   },
   {
-    "NAME": "rosterConstruction",
+    "NAME": "roster construction",
     "totalNumberOfPlayersAllowed": 16,
     "benchPlayersAllowed": 6,
     "injuredReservedAllowed": true,

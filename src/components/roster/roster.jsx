@@ -2,12 +2,12 @@
 
 import {getAllRules} from "../../../lib/rules/rules.js";
 import styles from './roster.module.scss';
-import {getRosterSlots} from "@/util/utils.js";
+import {getRosterSlots} from "@/util/roster-utils.js";
 
 const Roster = async () => {
-    const {rosterconstruction} = await getAllRules();
+    const {roster_construction} = await getAllRules();
 
-    const rosterSlots = getRosterSlots(rosterconstruction);
+    const rosterSlots = getRosterSlots(roster_construction);
 
     return (
         <section className={styles.roster}>

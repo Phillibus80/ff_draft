@@ -1,24 +1,15 @@
 import {PREVIOUS_YEAR} from "../app-constants.js";
+import {stripStr} from "../src/util/utils.js";
 
 export const convertToFirebaseJsonFormat = (jsonArr, propName = 'NAME') => {
     const arr = [...jsonArr].reduce((accum, current) => {
-        const modifiedName = current[propName]
-            .toLowerCase()
-            .replaceAll(' ', '_')
-            .replaceAll(/[\.\,\#\$\[\]]/g, '');
+        const modifiedName = stripStr(current[propName]);
         accum[`${modifiedName}`] = current;
         return accum;
     }, {});
 
     return JSON.stringify(arr);
 };
-
-export const flattenLeagueRules = rules => rules.reduce(
-    (accum, current) => {
-        const [key, ruleObj] = Object.entries(current);
-        accum[key] = ruleObj;
-        return accum;
-    }, {});
 
 export const getDBPath = (dbType, key, seasonYear = PREVIOUS_YEAR) => {
     switch (dbType) {
