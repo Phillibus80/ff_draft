@@ -2,12 +2,14 @@
   {
     "NAME": "Phil",
     "USERNAME": "Phillibus",
+    "PASSWORD": "doIt",
     "TEAM_NAME": "Crom Laughing",
     "TEAM_MOTO": "Crush your enemies; see them driven before you; hear the lamentations of the women."
   },
   {
     "NAME": "John",
     "USERNAME": "LittleJohn",
+    "PASSWORD": "didIt",
     "TEAM_NAME": "The Ball Busters",
     "TEAM_MOTO": "Something lame."
   }

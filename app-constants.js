@@ -37,3 +37,17 @@ export const positionVisualOrder = [
     POSITIONS.DEF,
     POSITIONS.K
 ];
+
+export const ROUTES = {
+    HOME: '/',
+    DRAFT_ROOM: '/draft-room'
+};
+
+export const databaseRoutes = {
+    LEAGUES: '/leagues',
+    MESSAGES: '/messages',
+    PLAYER_STATS_2022: '/players_stats_2022',
+    PLAYER_STATS_2023: '/players_stats_2023',
+    RULES: '/runs',
+    USERS: '/users'
+};

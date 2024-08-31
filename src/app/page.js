@@ -1,14 +1,13 @@
-import styles from "./page.module.scss";
-import PlayerList from "@/components/player-list/player-list";
-import Chat from "@/components/chat/chat";
-import Roster from "@/components/roster/roster.jsx";
+import styles from './page.module.scss';
+import LoginForm from "@/components/login-form/login-form.jsx";
 
-export default function Home() {
+const PageModule = async () => {
     return (
-        <main className={styles.main}>
-            <Roster/>
-            <PlayerList/>
-            <Chat/>
-        </main>
+        <section className={styles.login}>
+            <h1>Welcome Bitch</h1>
+            <LoginForm/>
+        </section>
     );
 }
+
+export default PageModule;
