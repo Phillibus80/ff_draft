@@ -1,0 +1,19 @@
+.login_form {
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+
+  input {
+    margin-top: 1rem;
+    border: 2px solid blue;
+    border-radius: .5rem;
+    line-height: 1.5rem;
+    padding: 0.5rem;
+
+    &[type="submit"] {
+      background-color: white;
+      color: black;
+      font-weight: bold;
+    }
+  }
+}

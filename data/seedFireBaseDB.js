@@ -5,6 +5,7 @@ import users from './mock-data/user-mock.json' assert {type: 'json'};
 import messages from './mock-data/message-mock.json' assert {type: 'json'};
 import leagues from './mock-data/league-mock.json' assert {type: 'json'};
 import leagueRules from './mock-data/league-rules-mock.json' assert {type: 'json'};
+import bcrypt from 'bcrypt';
 
 import {closeDatabaseConnection, database as db} from "../lib/firebaseConfig.js";
 import {convertToFirebaseJsonFormat, getDBPath, getDBTypeReadable} from "./data-utils.js";
@@ -22,13 +23,17 @@ const dbTypeEnum = ['stats', 'users', 'messages', 'leagues', 'rules'];
 
 async function seedDataToDB(jsonData, dbType, seasonYear = PREVIOUS_YEAR) {
     const isHandleDBType = dbTypeEnum.some(dbEnum => dbEnum === dbType);
-    if (!isHandleDBType) return console.error('Incorrect dbType: stats, users, messages, leagues')
+    if (!isHandleDBType) return console.error('Incorrect dbType: stats, users, messages, leagues, or rules')
 
     const data = JSON.parse(jsonData);
     const dataArr = Object.entries(data);
 
     try {
         for (const [key, dataObj] of dataArr) {
+            if (dbType === 'users') {
+                dataObj.PASSWORD = await bcrypt.hash(dataObj.PASSWORD, 10);
+            }
+
             const dbPath = getDBPath(dbType, key, seasonYear);
             const newObjectRef = ref(db, dbPath);
             await set(newObjectRef, dataObj);
