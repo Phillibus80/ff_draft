@@ -2,15 +2,25 @@
   {
     "NAME": "Phil",
     "USERNAME": "Phillibus",
+    "EMAIL": "p@hil.com",
     "PASSWORD": "doIt",
     "TEAM_NAME": "Crom Laughing",
-    "TEAM_MOTO": "Crush your enemies; see them driven before you; hear the lamentations of the women."
+    "TEAM_MOTO": "Crush your enemies; see them driven before you; hear the lamentations of the women.",
+    "LEAGUES": {
+      "da_league": true
+    },
+    "PLAYERS": {}
   },
   {
     "NAME": "John",
     "USERNAME": "LittleJohn",
+    "EMAIL": "john@little.com",
     "PASSWORD": "didIt",
     "TEAM_NAME": "The Ball Busters",
-    "TEAM_MOTO": "Something lame."
+    "TEAM_MOTO": "Something lame.",
+    "LEAGUES": {
+      "da_league": true
+    },
+    "PLAYERS": {}
   }
 ]

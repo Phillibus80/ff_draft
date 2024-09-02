@@ -30,4 +30,8 @@ export const {session, signIn, signOut} = NextAuth({
             },
         }),
     ],
+    session: {
+        strategy: 'jwt'
+    },
+    secret: process.env.AUTH_SECRET
 });
