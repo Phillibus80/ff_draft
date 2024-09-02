@@ -9,7 +9,7 @@ import bcrypt from 'bcrypt';
 
 import {closeDatabaseConnection, database as db} from "../lib/firebaseConfig.js";
 import {convertToFirebaseJsonFormat, getDBPath, getDBTypeReadable} from "./data-utils.js";
-import {PREVIOUS_YEAR} from "../app-constants.js";
+import {DB_TYPE_ENUM, DB_TYPES, PREVIOUS_YEAR} from "../app-constants.js";
 
 // Mock Data
 const seasonStats23 = convertToFirebaseJsonFormat(data_23);
@@ -19,10 +19,8 @@ const messageMock = convertToFirebaseJsonFormat(messages, 'TIMESTAMP');
 const leagueMock = convertToFirebaseJsonFormat(leagues, 'NAME');
 const leagueRulesMock = convertToFirebaseJsonFormat(leagueRules, 'NAME');
 
-const dbTypeEnum = ['stats', 'users', 'messages', 'leagues', 'rules'];
-
 async function seedDataToDB(jsonData, dbType, seasonYear = PREVIOUS_YEAR) {
-    const isHandleDBType = dbTypeEnum.some(dbEnum => dbEnum === dbType);
+    const isHandleDBType = DB_TYPE_ENUM.some(dbEnum => dbEnum === dbType);
     if (!isHandleDBType) return console.error('Incorrect dbType: stats, users, messages, leagues, or rules')
 
     const data = JSON.parse(jsonData);
@@ -30,7 +28,7 @@ async function seedDataToDB(jsonData, dbType, seasonYear = PREVIOUS_YEAR) {
 
     try {
         for (const [key, dataObj] of dataArr) {
-            if (dbType === 'users') {
+            if (dbType === DB_TYPES.USERS) {
                 dataObj.PASSWORD = await bcrypt.hash(dataObj.PASSWORD, 10);
             }
 
@@ -47,12 +45,12 @@ async function seedDataToDB(jsonData, dbType, seasonYear = PREVIOUS_YEAR) {
 }
 
 const seedingPromises = async () => Promise.all([
-    seedDataToDB(seasonStats23, 'stats'),
-    seedDataToDB(seasonStats22, 'stats', 2022),
-    seedDataToDB(userMock, 'users'),
-    seedDataToDB(messageMock, 'messages'),
-    seedDataToDB(leagueMock, 'leagues'),
-    seedDataToDB(leagueRulesMock, 'rules')
+    seedDataToDB(seasonStats23, DB_TYPES.STATS),
+    seedDataToDB(seasonStats22, DB_TYPES.STATS, 2022),
+    seedDataToDB(userMock, DB_TYPES.USERS),
+    seedDataToDB(messageMock, DB_TYPES.MESSAGES),
+    seedDataToDB(leagueMock, DB_TYPES.LEAGUES),
+    seedDataToDB(leagueRulesMock, DB_TYPES.RULES)
 ]);
 
 seedingPromises()

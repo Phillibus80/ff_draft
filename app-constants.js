@@ -15,6 +15,16 @@ export const POSITIONS = {
     DEF: 'DEF'
 }
 
+export const DB_TYPES ={
+    STATS: 'stats',
+    USERS: 'users',
+    MESSAGES: 'messages',
+    LEAGUES: 'leagues',
+    RULES: 'rules'
+};
+
+export const DB_TYPE_ENUM = Object.values(DB_TYPES);
+
 export const PositionEnum = Object.values(POSITIONS);
 
 export const PREVIOUS_YEAR = new Date().getFullYear() - 1;
@@ -44,10 +54,10 @@ export const ROUTES = {
 };
 
 export const databaseRoutes = {
-    LEAGUES: '/leagues',
-    MESSAGES: '/messages',
-    PLAYER_STATS_2022: '/players_stats_2022',
-    PLAYER_STATS_2023: '/players_stats_2023',
-    RULES: '/runs',
-    USERS: '/users'
+    LEAGUES: 'leagues',
+    MESSAGES: 'messages',
+    PLAYER_STATS_2022: 'players_stats_2022',
+    PLAYER_STATS_2023: 'players_stats_2023',
+    RULES: 'rules',
+    USERS: 'users'
 };

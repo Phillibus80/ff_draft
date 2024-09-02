@@ -1,4 +1,4 @@
-import {PREVIOUS_YEAR} from "../app-constants.js";
+import {databaseRoutes, PREVIOUS_YEAR} from "../app-constants.js";
 import {stripStr} from "../src/util/utils.js";
 
 export const convertToFirebaseJsonFormat = (jsonArr, propName = 'NAME') => {
@@ -16,13 +16,13 @@ export const getDBPath = (dbType, key, seasonYear = PREVIOUS_YEAR) => {
         case 'stats':
             return `players_stats_${seasonYear}/${key}`;
         case 'users':
-            return `users/${key}`;
+            return `${databaseRoutes.USERS}/${key}`;
         case 'messages':
-            return `messages/${key}`;
+            return `${databaseRoutes.MESSAGES}/${key}`;
         case 'leagues':
-            return `leagues/${key}`;
+            return `${databaseRoutes.LEAGUES}/${key}`;
         case 'rules':
-            return `rules/${key}`;
+            return `${databaseRoutes.RULES}/${key}`;
     }
 };
 
