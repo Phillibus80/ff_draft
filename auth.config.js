@@ -1,4 +1,4 @@
-import {ROUTES} from "../app-constants.js";
+import {ROUTES} from "./app-constants.js";
 
 export const authConfig = {
     page: {
