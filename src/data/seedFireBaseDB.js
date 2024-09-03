@@ -7,7 +7,7 @@ import leagues from './mock-data/league-mock.json' assert {type: 'json'};
 import leagueRules from './mock-data/league-rules-mock.json' assert {type: 'json'};
 import bcrypt from 'bcrypt';
 
-import {closeDatabaseConnection, database as db} from "../lib/firebaseConfig.js";
+import {closeDatabaseConnection, database as db} from "../../lib/firebaseConfig.js";
 import {convertToFirebaseJsonFormat, getDBPath, getDBTypeReadable} from "./data-utils.js";
 import {DB_TYPE_ENUM, DB_TYPES, PREVIOUS_YEAR} from "../app-constants.js";
 

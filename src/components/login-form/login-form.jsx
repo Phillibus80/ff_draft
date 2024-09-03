@@ -2,7 +2,7 @@
 
 import {useFormState} from "react-dom";
 import styles from './login-form.module.scss';
-import {authenticate} from "../../../lib/server-actions/actions.js";
+import {authenticate} from "@/app/actions/actions.js";
 
 const LoginForm = () => {
     const [state, formAction] = useFormState(authenticate, {message: null});

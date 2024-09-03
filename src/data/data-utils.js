@@ -1,5 +1,5 @@
 import {databaseRoutes, PREVIOUS_YEAR} from "../app-constants.js";
-import {stripStr} from "../src/util/utils.js";
+import {stripStr} from "../../lib/util/utils.js";
 
 export const convertToFirebaseJsonFormat = (jsonArr, propName = 'NAME') => {
     const arr = [...jsonArr].reduce((accum, current) => {

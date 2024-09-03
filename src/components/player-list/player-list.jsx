@@ -1,6 +1,6 @@
 import {getAllPlayers} from "../../../lib/players/playerStats";
 import styles from './player-list.module.scss';
-import {PLAYER_KEYS} from "../../../app-constants.js";
+import {PLAYER_KEYS} from "../../app-constants.js";
 
 const PlayerList = async () => {
     const allPlayers = await getAllPlayers();
