@@ -9,7 +9,6 @@ import SessionWrapper from "@/components/session-wrapper/session-wrapper.jsx";
 const ChatContainer = (props) => {
     const [currentMessages, setCurrentMessages] = useState([]);
 
-
     // Used for pagination
     const [lastKey, setLastKey] = useState('');
 
