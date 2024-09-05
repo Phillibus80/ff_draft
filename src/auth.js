@@ -21,7 +21,6 @@ export const authOptions = {
                     if (!user) return null;
                     const passwordMatch = await bcrypt.compare(password, user.PASSWORD);
 
-                    console.log('Authorize:: ', user);
                     if (passwordMatch) return user;
                 }
 
@@ -38,7 +37,6 @@ export const authOptions = {
             session.user.name = token.name;
             session.user.team = token.team;
 
-            // console.log('Session:: ', session)
             return session;
         },
         // TODO encrypt the personal info
@@ -50,14 +48,11 @@ export const authOptions = {
                 token.email = user.EMAIL;
                 token.team = user.TEAM_NAME;
             }
-            // console.log('Jwt:', token);
             return token;
         },
         authorized({auth, request: {nextUrl}}) {
             const date = new Date();
             const isTokenExpired = date.getTime() >= Date.parse(auth?.expires);
-
-            console.log('Authorized User:: ', auth.user)
 
             return !!auth?.user?.id && !isTokenExpired;
         }

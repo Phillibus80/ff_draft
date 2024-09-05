@@ -5,9 +5,7 @@ import styles from './login-form.module.scss';
 import {authenticate} from "@/app/actions/actions.js";
 
 const LoginForm = () => {
-    const [state, formAction] = useFormState(authenticate, {message: null});
-
-    console.log('Form State:: ', state);
+    const [, formAction] = useFormState(authenticate, {message: null});
 
     return (
         <form action={formAction} className={styles.login_form}>
