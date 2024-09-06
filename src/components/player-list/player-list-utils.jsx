@@ -11,21 +11,27 @@ export const getTableHeaders = (playerArr = []) => playerArr[0] && Object.keys(p
         </th>
     );
 
-export const getTableBody = (playerArr = []) => {
-    return playerArr.length > 0 && playerArr.map(player =>
-        <tr key={`${player.NAME}_${PREVIOUS_YEAR}`}>
-            {
-                Object.entries(player)
-                    .filter(([key]) => key && isOneOfTheVisibleKeys(key))
-                    .map(([statKey, playerStat]) =>
-                        <td
-                            className={statKey === PLAYER_KEYS.PTS ? styles.statNumber : undefined}
-                            key={`${player.NAME}_${PREVIOUS_YEAR}_${statKey}`}
-                        >
-                            {playerStat}
-                        </td>
-                    )
-            }
-        </tr>
-    )
+export const getTableBody = (playerArr = [], draftPlayerCallback) => {
+    return playerArr.length > 0
+        && playerArr.map(
+            player =>
+                <tr
+                    key={`${player.NAME}_${PREVIOUS_YEAR}`}
+                    style={{cursor: 'pointer'}}
+                    onClick={() => draftPlayerCallback(player)}
+                >
+                    {
+                        Object.entries(player)
+                            .filter(([key]) => key && isOneOfTheVisibleKeys(key))
+                            .map(([statKey, playerStat]) =>
+                                <td
+                                    className={statKey === PLAYER_KEYS.PTS ? styles.statNumber : undefined}
+                                    key={`${player.NAME}_${PREVIOUS_YEAR}_${statKey}`}
+                                >
+                                    {playerStat}
+                                </td>
+                            )
+                    }
+                </tr>
+        )
 };

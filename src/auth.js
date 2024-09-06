@@ -36,6 +36,7 @@ export const authOptions = {
             session.user.email = token.email;
             session.user.name = token.name;
             session.user.team = token.team;
+            session.user.leagues = token.leagues;
 
             return session;
         },
@@ -47,6 +48,7 @@ export const authOptions = {
                 token.name = user.NAME;
                 token.email = user.EMAIL;
                 token.team = user.TEAM_NAME;
+                token.leagues = user.LEAGUES;
             }
             return token;
         },
