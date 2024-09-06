@@ -1,9 +1,10 @@
-import {getAllPlayers} from "../../../lib/players/playerStats";
+import {getAllDraftPoolPlayers} from "../../../lib/players/playerStats";
 import styles from './player-list.module.scss';
 import {PLAYER_KEYS, PREVIOUS_YEAR} from "@/app-constants.js";
 
 const PlayerList = async () => {
-    const allPlayers = await getAllPlayers();
+    const allPlayers = await getAllDraftPoolPlayers();
+    console.log('@@', allPlayers);
     const playerObjectArr = Object.values(allPlayers);
 
     const isOneOfTheVisibleKeys = key => key === PLAYER_KEYS.NAME || key === PLAYER_KEYS.POSITION || key === PLAYER_KEYS.PTS;

@@ -46,6 +46,7 @@ async function seedDataToDB(jsonData, dbType, seasonYear = PREVIOUS_YEAR) {
 
 const seedingPromises = async () => Promise.all([
     seedDataToDB(seasonStats23, DB_TYPES.STATS),
+    seedDataToDB(seasonStats23, DB_TYPES.DRAFT_POOL),
     seedDataToDB(seasonStats22, DB_TYPES.STATS, 2022),
     seedDataToDB(userMock, DB_TYPES.USERS),
     seedDataToDB(messageMock, DB_TYPES.MESSAGES),
