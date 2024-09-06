@@ -6,7 +6,7 @@ import ChatWindow from "@/components/chat/chat-window.jsx";
 import ChatInput from "@/components/chat/chat-input.jsx";
 import SessionWrapper from "@/components/session-wrapper/session-wrapper.jsx";
 
-const ChatContainer = (props) => {
+const ChatContainer = () => {
     const [currentMessages, setCurrentMessages] = useState([]);
 
     // Used for pagination
