@@ -20,7 +20,8 @@ export const DB_TYPES ={
     USERS: 'users',
     MESSAGES: 'messages',
     LEAGUES: 'leagues',
-    RULES: 'rules'
+    RULES: 'rules',
+    DRAFT_POOL: 'draft-pool'
 };
 
 export const DB_TYPE_ENUM = Object.values(DB_TYPES);
@@ -59,5 +60,6 @@ export const databaseRoutes = {
     PLAYER_STATS_2022: 'players_stats_2022',
     PLAYER_STATS_2023: 'players_stats_2023',
     RULES: 'rules',
-    USERS: 'users'
+    USERS: 'users',
+    DRAFT_POOL: 'draft-pool'
 };
