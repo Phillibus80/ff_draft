@@ -5,6 +5,7 @@ import styles from './player-list.module.scss';
 import {useEffect, useState} from "react";
 import {getTableBody, getTableHeaders} from "@/components/player-list/player-list-utils.jsx";
 import {useSession} from "next-auth/react";
+import {draftPlayer} from "../../../lib/players/draftPlayer.js";
 
 const PlayerList = () => {
     const {data: session, status} = useSession();
@@ -15,10 +16,6 @@ const PlayerList = () => {
     useEffect(() => {
         getDraftPoolPlayers(setAllPlayers);
     }, []);
-
-    const draftPlayer = player => {
-        console.log('Player:: ', player);
-    };
 
     return (
         <section className={styles.playerListTable}>

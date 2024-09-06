@@ -29,7 +29,7 @@ export const authOptions = {
         }),
     ],
     callbacks: {
-        // // TODO encrypt the personal info
+        // TODO encrypt the personal info
         async session({session, token}) {
             session.user.id = token.id;
             session.user.username = token.username;
@@ -37,6 +37,9 @@ export const authOptions = {
             session.user.name = token.name;
             session.user.team = token.team;
             session.user.leagues = token.leagues;
+
+            // TODO remove this
+            session.user.players = token.players;
 
             return session;
         },
@@ -49,6 +52,9 @@ export const authOptions = {
                 token.email = user.EMAIL;
                 token.team = user.TEAM_NAME;
                 token.leagues = user.LEAGUES;
+
+                // TODO remove this
+                token.players = user.PLAYERS;
             }
             return token;
         },
