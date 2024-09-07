@@ -11,14 +11,14 @@ export const getTableHeaders = (playerArr = []) => playerArr[0] && Object.keys(p
         </th>
     );
 
-export const getTableBody = (playerArr = [], draftPlayerCallback) => {
+export const getTableBody = (playerArr = [], draftPlayerCallback, username) => {
     return playerArr.length > 0
         && playerArr.map(
             player =>
                 <tr
                     key={`${player.NAME}_${PREVIOUS_YEAR}`}
                     style={{cursor: 'pointer'}}
-                    onClick={() => draftPlayerCallback(player)}
+                    onClick={() => draftPlayerCallback(player, username)}
                 >
                     {
                         Object.entries(player)
