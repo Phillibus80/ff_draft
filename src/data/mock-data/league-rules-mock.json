@@ -9,7 +9,7 @@
   {
     "NAME": "roster construction",
     "totalNumberOfPlayersAllowed": 16,
-    "benchPlayersAllowed": 6,
+    "benchPlayersAllowed": 5,
     "injuredReservedAllowed": true,
     "numberOfIR": 2,
     "starterPositions": {

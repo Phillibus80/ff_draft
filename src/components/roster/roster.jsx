@@ -1,18 +1,30 @@
-'use server';
+'use client';
 
-import {getAllRules} from "../../../lib/rules/rules.js";
 import styles from './roster.module.scss';
-import {getRosterSlots} from "../../../lib/util/roster-utils.js";
+import {useEffect, useState} from "react";
+import {useSession} from "next-auth/react";
+import {getDraftedPlayers} from "../../../lib/players/draftPlayer.js";
+import {getLeagueFromSession, stripStr} from "../../../lib/util/utils.js";
 
-const Roster = async () => {
-    const {roster_construction} = await getAllRules();
+const Roster = ({rosterMap}) => {
+    const {data: session, status} = useSession();
+    const [roster, setRoster] = useState({});
 
-    const rosterSlots = getRosterSlots(roster_construction);
+    useEffect(() => {
+        if (status === 'authenticated') {
+            const leagueKey = getLeagueFromSession(session, status);
+            const teamKey = stripStr(session?.user?.team);
+
+            getDraftedPlayers(leagueKey, teamKey, rosterMap, setRoster);
+        }
+    }, [status]);
+
+    console.log('Roster:: ', roster);
 
     return (
         <section className={styles.roster}>
             <h3 className={styles.roster_header}>Drafted Players</h3>
-            {rosterSlots.map(slot => slot)}
+            {/*{rosterSlots.map(slot => slot)}*/}
         </section>
     );
 }
