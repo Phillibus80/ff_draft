@@ -6,17 +6,13 @@ import {useEffect, useState} from "react";
 import {getTableBody, getTableHeaders} from "@/components/player-list/player-list-utils.jsx";
 import {useSession} from "next-auth/react";
 import {draftPlayer as draftPlayerDB} from "../../../lib/players/draftPlayer.js";
+import {getLeagueFromSession} from "../../../lib/util/utils.js";
 
 const PlayerList = () => {
     const {data: session, status} = useSession();
     const [allPlayers, setAllPlayers] = useState({});
     const playerObjectArr = allPlayers && Object.values(allPlayers);
-
-    // TODO make this dynamic
-    const currentLeague = 'da_league';
-    const sessionLeague = !!session?.user?.leagues[currentLeague]
-        ? currentLeague
-        : '';
+    const sessionLeague = getLeagueFromSession(session, status);
 
     useEffect(() => {
         getDraftPoolPlayers(setAllPlayers);

@@ -1,7 +1,7 @@
 "use client";
 
 import {useEffect, useRef} from "react";
-import {debounce} from "../../../lib/util/utils";
+import {debounce, getLeagueFromSession} from "../../../lib/util/utils";
 import {addMessage} from "../../../lib/chat/messages.js";
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/navigation.js";
@@ -10,13 +10,8 @@ import {ROUTES} from "@/app-constants.js";
 const ChatInput = () => {
     const inputRef = useRef();
     const {data: session, status} = useSession();
+    const sessionLeague = getLeagueFromSession(session, status);
     const router = useRouter();
-
-    // TODO make this dynamic
-    const currentLeague = 'da_league';
-    const sessionLeague = !!session?.user?.leagues[currentLeague]
-        ? currentLeague
-        : '';
 
     const debouncedSubmit = debounce(async (message, author, leagueName) => {
         await addMessage(message, author, leagueName);
