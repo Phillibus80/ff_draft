@@ -9,11 +9,17 @@ import {ROUTES} from "@/app-constants.js";
 
 const ChatInput = () => {
     const inputRef = useRef();
-    const session = useSession();
+    const {data: session, status} = useSession();
     const router = useRouter();
 
-    const debouncedSubmit = debounce(async (message, author) => {
-        await addMessage(message, author);
+    // TODO make this dynamic
+    const currentLeague = 'da_league';
+    const sessionLeague = !!session?.user?.leagues[currentLeague]
+        ? currentLeague
+        : '';
+
+    const debouncedSubmit = debounce(async (message, author, leagueName) => {
+        await addMessage(message, author, leagueName);
     }, 300);
 
     const handleSubmit = async event => {
@@ -21,7 +27,7 @@ const ChatInput = () => {
         const message = inputRef.current.value;
 
         if (message) {
-            debouncedSubmit(message, session.data.user.username);
+            debouncedSubmit(message, session.user.username, sessionLeague);
 
             // Reset the field
             inputRef.current.value = '';
@@ -29,12 +35,12 @@ const ChatInput = () => {
     };
 
     useEffect(() => {
-        if (session.status === 'unauthenticated') {
+        if (status === 'unauthenticated') {
             router.push(ROUTES.HOME);
         }
-    }, [session.status, router]);
+    }, [status, router]);
 
-    switch (session.status) {
+    switch (status) {
         case "loading":
             return (
                 <div>Loading...</div>
