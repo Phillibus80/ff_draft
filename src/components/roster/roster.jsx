@@ -19,12 +19,11 @@ const Roster = ({rosterMap}) => {
         }
     }, [status]);
 
-    console.log('Roster:: ', roster);
-
     return (
         <section className={styles.roster}>
             <h3 className={styles.roster_header}>Drafted Players</h3>
-            {/*{rosterSlots.map(slot => slot)}*/}
+            {Object.entries(roster).map(([key, value]) =>
+                <p key={key}>{key?.split('_')[0]} : {value}</p>)}
         </section>
     );
 }

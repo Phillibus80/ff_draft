@@ -4,7 +4,7 @@ import LoginForm from "@/components/login-form/login-form.jsx";
 const Home = () => {
     return (
         <section className={styles.login}>
-            <h1>Welcome Bitch</h1>
+            <h1>Welcome to the DRAFT</h1>
             <LoginForm/>
         </section>
     );
