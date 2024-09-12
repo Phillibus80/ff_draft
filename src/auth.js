@@ -49,9 +49,6 @@ export const authOptions = {
                 token.email = user.EMAIL;
                 token.team = user.TEAM_NAME;
                 token.leagues = user.LEAGUES;
-
-                // TODO remove this
-                token.players = user.PLAYERS;
             }
             return token;
         },
