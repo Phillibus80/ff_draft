@@ -38,9 +38,6 @@ export const authOptions = {
             session.user.team = token.team;
             session.user.leagues = token.leagues;
 
-            // TODO remove this
-            session.user.players = token.players;
-
             return session;
         },
         // TODO encrypt the personal info
