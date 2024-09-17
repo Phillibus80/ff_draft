@@ -6,8 +6,7 @@ import ChatWindow from "@/components/chat/chat-window.jsx";
 import ChatInput from "@/components/chat/chat-input.jsx";
 import {useSession} from "next-auth/react";
 import {getLeagueFromSession} from "../../../lib/util/utils.js";
-import {ROUTES} from "@/app-constants.js";
-import {useRouter} from "next/navigation.js";
+import {SESSION_CONSTANTS} from "@/app-constants.js";
 
 const ChatContainer = () => {
     const [currentMessages, setCurrentMessages] = useState([]);
@@ -16,24 +15,22 @@ const ChatContainer = () => {
     // Used for pagination
     const [lastKey, setLastKey] = useState('');
 
-    const router = useRouter();
-
     useEffect(() => {
-        switch (status) {
-            case 'authenticated':
-                const sessionLeague = getLeagueFromSession(session, status);
-                getAllMessages(sessionLeague, setCurrentMessages, lastKey, setLastKey);
+        let unsubscribe;
 
-                break;
-            case 'unauthenticated':
-                router.push(ROUTES.HOME);
+        switch (status) {
+            case SESSION_CONSTANTS.AUTHENTICATED:
+                const sessionLeague = getLeagueFromSession(session, status);
+                unsubscribe = getAllMessages(sessionLeague, setCurrentMessages, lastKey, setLastKey);
 
                 break;
         }
 
+        return () => unsubscribe && unsubscribe();
+
     }, [status]);
 
-    return status === 'loading'
+    return status === SESSION_CONSTANTS.LOADING
         ? <div>Loading...</div>
         : (<>
                 <ChatWindow messages={currentMessages}/>

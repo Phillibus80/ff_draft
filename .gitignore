@@ -41,5 +41,6 @@ next-env.d.ts
 .idea
 /.idea
 
-#sqlite3 database
-/stats.db
+# sensitive
+sensitive/*
+

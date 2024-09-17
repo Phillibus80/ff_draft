@@ -63,3 +63,10 @@ export const databaseRoutes = {
     USERS: 'users',
     DRAFT_POOL: 'draft-pool'
 };
+
+export const SESSION_CONSTANTS = {
+    LOADING: 'loading',
+    AUTHENTICATED: 'authenticated',
+    UNAUTHENTICATED: 'unauthenticated'
+
+}

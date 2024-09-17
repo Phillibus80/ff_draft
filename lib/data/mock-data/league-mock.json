@@ -1,0 +1,22 @@
+[
+  {
+    "NAME": "Da League",
+    "MEMBERS": {
+      "Phillibus": true,
+      "LittleJohn": true
+    },
+    "DRAFT": {
+      "START": "00000",
+      "TIME_PER_SELECTION": "120000",
+      "TIMESTAMP_OF_LAST_SELECTION": "00000",
+      "COMMISSIONER": "Phillibus",
+      "CURRENT_DRAFT_POSITION": 1,
+      "DRAFT_ORDER": {
+        "0": "crom_laughing",
+        "1": "the_ball_busters"
+      },
+      "DRAFT_SELECTIONS": {
+      }
+    }
+  }
+]

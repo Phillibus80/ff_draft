@@ -1,8 +1,23 @@
 'use server';
 
 import {AuthError} from "next-auth";
+import {initFirebaseAdmin} from "../../../lib/initFirebaseAdmin.js";
+import {signIn} from "../../../lib/auth.js";
+import {getAuth} from "firebase-admin/auth";
 import {ROUTES} from "@/app-constants.js";
-import {signIn} from "@/auth.js";
+import {getUser} from "../../../lib/league/getUser.js";
+import {stripStr} from "../../../lib/util/utils.js";
+
+// Initialize Firebase Admin
+initFirebaseAdmin();
+
+export async function getCustomToken(username) {
+    const lowercaseUsername = stripStr(username);
+    const user = await getUser(lowercaseUsername);
+    if (!user || !user.USERNAME) throw new AuthError('Please create an account.');
+
+    return await getAuth().createCustomToken(user.USERNAME, {});
+}
 
 export async function authenticate(prevState, formValues) {
     try {
@@ -11,9 +26,13 @@ export async function authenticate(prevState, formValues) {
             password: formValues.get('password')
         };
 
+        const customFBToken = await getCustomToken(loginInfo?.username);
+
+        // Next Auth sign in, creates JWT and Session
         await signIn('credentials', {
             ...loginInfo,
-            redirectTo: ROUTES.DRAFT_ROOM
+            redirectTo: ROUTES.DRAFT_ROOM,
+            customToken: customFBToken
         });
 
     } catch (error) {

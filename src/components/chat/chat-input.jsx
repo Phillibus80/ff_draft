@@ -1,7 +1,7 @@
 "use client";
 
 import {useRef} from "react";
-import {debounce, getLeagueFromSession} from "../../../lib/util/utils";
+import {debounce, getLeagueFromSession} from "../../../lib/util/utils.js";
 import {addMessage} from "../../../lib/chat/messages.js";
 import {useSession} from "next-auth/react";
 
