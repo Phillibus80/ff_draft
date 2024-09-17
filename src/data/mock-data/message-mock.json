@@ -1,7 +1,10 @@
 [
   {
-    "USERNAME": "Phillibus",
-    "MESSAGE": "Don't draft that dude.",
-    "TIMESTAMP": "20240824"
+    "LEAGUE": "Da League",
+    "20240824": {
+      "USERNAME": "Phillibus",
+      "MESSAGE": "Don't draft that dude.",
+      "TIMESTAMP": "20240824"
+    }
   }
 ]
