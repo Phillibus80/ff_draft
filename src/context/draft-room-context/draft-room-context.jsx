@@ -14,6 +14,8 @@ const DraftRoomContext = ({children}) => {
     useRerouteIfUnauthenticated(status);
     useFirebaseSignInWithCustomToken(session?.user?.customToken);
 
+    const leagueName = 'da_league';
+
     // League Draft Details
     const draftDetails = useGetLeagueDraftDetails(session, status);
     const timeAllowed = !!draftDetails?.TIME_PER_SELECTION ? Number(draftDetails.TIME_PER_SELECTION) : 0;
@@ -35,6 +37,7 @@ const DraftRoomContext = ({children}) => {
         : (
             <DraftContext.Provider value={{
                 leagueDraft: draftDetails,
+                leagueName,
                 remainingTime,
                 setRemainingTime,
                 countDownText,
