@@ -3,6 +3,7 @@
 import Timer from "@/components/draft-tracker/timer.jsx";
 import {useContext} from "react";
 import {DraftContext} from "@/context/draft-room-context/draft-room-context.jsx";
+import DraftQueue from "@/components/draft-tracker/draft-queue.jsx";
 
 const DraftTracker = () => {
     const draftContext = useContext(DraftContext);
@@ -22,6 +23,7 @@ const DraftTracker = () => {
             currentTime={timestampOfSelected}
             timeAllowed={timePerPick}
         />
+        <DraftQueue/>
     </>);
 };
 
