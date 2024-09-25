@@ -7,8 +7,8 @@ import {useRouter} from "next/navigation.js";
 export const useFirebaseSignInWithCustomToken = customToken => {
     useEffect(() => {
         if (customToken) {
-            signInWithCustomToken(auth, customToken)
-                .then(res => console.log('Sign Custom Token:: ', res));
+            signInWithCustomToken(auth, customToken).then(() => {
+            });
         }
 
     }, [customToken]);
