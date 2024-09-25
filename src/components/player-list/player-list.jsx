@@ -18,11 +18,12 @@ const PlayerList = () => {
     useEffect(() => {
         const unsubscribe = getDraftPoolPlayers(setAllPlayers)
 
-        return () => unsubscribe && unsubscribe();
+        return () => unsubscribe ?? unsubscribe();
     }, [status]);
 
-    const draftPlayerWithSession = (leagueName, username, teamName) =>
-        player => draftPlayerDB(leagueName, username, teamName, player);
+    const draftPlayerWithSession =
+        (leagueName, username, teamName) =>
+            (player) => draftPlayerDB(leagueName, username, teamName, player);
 
     const draftPlayer = draftPlayerWithSession(
         sessionLeague,
