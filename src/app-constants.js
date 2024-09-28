@@ -15,7 +15,7 @@ export const POSITIONS = {
     DEF: 'DEF'
 }
 
-export const DB_TYPES ={
+export const DB_TYPES = {
     STATS: 'stats',
     USERS: 'users',
     MESSAGES: 'messages',
@@ -55,13 +55,13 @@ export const ROUTES = {
 };
 
 export const databaseRoutes = {
-    LEAGUES: 'leagues',
-    MESSAGES: 'messages',
+    LEAGUES: DB_TYPES.LEAGUES,
+    MESSAGES: DB_TYPES.MESSAGES,
     PLAYER_STATS_2022: 'players_stats_2022',
     PLAYER_STATS_2023: 'players_stats_2023',
-    RULES: 'rules',
-    USERS: 'users',
-    DRAFT_POOL: 'draft-pool'
+    RULES: DB_TYPES.RULES,
+    USERS: DB_TYPES.USERS,
+    DRAFT_POOL: DB_TYPES.DRAFT_POOL
 };
 
 export const SESSION_CONSTANTS = {
