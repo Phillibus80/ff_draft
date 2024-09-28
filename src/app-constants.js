@@ -20,7 +20,7 @@ export const DB_TYPES ={
     USERS: 'users',
     MESSAGES: 'messages',
     LEAGUES: 'leagues',
-    RULES: 'rules',
+    RULES: 'league_rules',
     DRAFT_POOL: 'draft-pool'
 };
 
