@@ -25,14 +25,19 @@ const Roster = () => {
             // rules set
             getAllRules(leagueKey)
                 .then(res => {
-                    const {config: {roster_construction}} = res;
+                    try {
+                        const {config: {roster_construction}} = res;
 
-                    const rosterMap = getRosterSlots(roster_construction);
+                        const rosterMap = getRosterSlots(roster_construction);
 
-                    // Populate the roster with drafted players
-                    const teamKey = stripStr(session?.user?.team);
-                    unsubscribe = getDraftedPlayers(leagueKey, teamKey, rosterMap, setRoster);
-                    setRoster(prevRosterMap => ({...rosterMap, ...prevRosterMap}));
+                        // Populate the roster with drafted players
+                        const teamKey = stripStr(session?.user?.team);
+                        unsubscribe = getDraftedPlayers(leagueKey, teamKey, rosterMap, setRoster);
+                        setRoster(prevRosterMap => ({...rosterMap, ...prevRosterMap}));
+                    } catch (e) {
+                        console.error('Issue getting the league rules.');
+                        // throw new Error('No rules returned.')
+                    }
                 })
         }
 
