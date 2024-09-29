@@ -19,12 +19,9 @@ export async function getCustomToken(username) {
     return await getAuth().createCustomToken(user.USERNAME, {});
 }
 
-export async function authenticate(prevState, formValues) {
+export async function authenticate(username, password) {
     try {
-        const loginInfo = {
-            username: formValues.get('username'),
-            password: formValues.get('password')
-        };
+        const loginInfo = {username, password};
 
         const customFBToken = await getCustomToken(loginInfo?.username);
 
