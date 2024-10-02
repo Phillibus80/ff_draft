@@ -23,7 +23,7 @@ export async function authenticate(username, password) {
     try {
         const loginInfo = {username, password};
 
-        const customFBToken = await getCustomToken(loginInfo?.username);
+        const customFBToken = await getCustomToken(username);
 
         // Next Auth sign in, creates JWT and Session
         await signIn('credentials', {

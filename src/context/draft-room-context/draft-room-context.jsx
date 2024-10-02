@@ -11,7 +11,7 @@ export const DraftContext = createContext(null);
 const DraftRoomContext = ({children}) => {
     // Session Tasks
     const {data: session, status} = useSession();
-    console.log('Session:: ', session)
+
     useRerouteIfUnauthenticated(status);
     useFirebaseSignInWithCustomToken(session?.user?.customToken);
 
