@@ -51,6 +51,6 @@ export const useGetAllLeagueRules = (leagueName, session, status, setStateCallba
         }
 
         // Clean up
-        return () => unsubscribe ? unsubscribe() : null;
+        return () => !!unsubscribe ?? unsubscribe();
     }, [status]);
 }
