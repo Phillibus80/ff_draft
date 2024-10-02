@@ -2,7 +2,7 @@
 
 import {createContext, useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
-import {useGetLeagueDraftDetails} from "@/hooks/draft-tracker/draft-tracker-hooks.jsx";
+import {useGetAllLeagueRules, useGetLeagueDraftDetails} from "@/hooks/draft-tracker/draft-tracker-hooks.jsx";
 import {SESSION_CONSTANTS} from "@/app-constants.js";
 import {useFirebaseSignInWithCustomToken, useRerouteIfUnauthenticated} from "@/hooks/hooks.jsx";
 
@@ -13,13 +13,14 @@ const DraftRoomContext = ({children}) => {
 
     // Session Tasks
     const {data: session, status} = useSession();
-
     useRerouteIfUnauthenticated(status);
     useFirebaseSignInWithCustomToken(session?.user?.customToken);
 
     // League Draft Details
     const draftDetails = useGetLeagueDraftDetails(session, status);
-    const timeAllowed = !!draftDetails?.TIME_PER_SELECTION ? Number(draftDetails.TIME_PER_SELECTION) : 0;
+    const timeAllowed = !!draftDetails?.TIME_PER_SELECTION
+        ? Number(draftDetails.TIME_PER_SELECTION)
+        : 0;
 
     // Timer State
     const [remainingTime, setRemainingTime] = useState(timeAllowed);
@@ -32,6 +33,10 @@ const DraftRoomContext = ({children}) => {
             setRemainingTime(timeAllowed);
         }
     }, [draftDetails]);
+
+    // League Rules
+    const [leagueRules, setLeagueRules] = useState({});
+    useGetAllLeagueRules(leagueName, session, status, setLeagueRules);
 
     return status === SESSION_CONSTANTS.LOADING
         ? <div>Loading...</div>
@@ -46,6 +51,7 @@ const DraftRoomContext = ({children}) => {
                 isRunning,
                 setIsRunning,
                 timeAllowed,
+                leagueRules,
                 pauseTimer: () => {
                     setIsRunning(false);
                 },
