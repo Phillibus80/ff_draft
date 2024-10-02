@@ -1,9 +1,22 @@
-.timer {
+.draft {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: .75rem;
 
-  .button_group {
+  .timer {
     display: flex;
-    flex-direction: column !important;
+    flex-direction: column;
+
+    .button_group {
+      display: flex;
+      flex-direction: column !important;
+    }
   }
+
+  .teamDraftCard {
+    border: 2px solid blue;
+    border-radius: .5rem;
+    height: 12rem;
+  }
+
 }
