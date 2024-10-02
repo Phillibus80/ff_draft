@@ -1,15 +1,15 @@
 "use client";
 
-import {useContext} from "react";
-import {DraftContext} from "@/context/draft-room-context/draft-room-context.jsx";
+import TeamDraftCard from "@/components/draft-tracker/team-draft-card.jsx";
 
-const DraftQueue = () => {
-    const {draftRules, rosterConstruction} = useContext(DraftContext);
-    console.log('Draft Rules:: ', draftRules);
-    console.log('Roster Construction:: ', rosterConstruction);
-    return (
-        <>Hello</>
-    );
+const DraftQueue = ({draftOrder, currentPosition}) => {
+    console.log('Current position', currentPosition);
+    return <>
+        {
+            draftOrder.length > 0
+            && draftOrder.map(teamName => <TeamDraftCard teamName={teamName}/>)
+        }
+    </>
 };
 
 export default DraftQueue;
