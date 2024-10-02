@@ -36,7 +36,7 @@ const Roster = () => {
                         setRoster(prevRosterMap => ({...rosterMap, ...prevRosterMap}));
                     } catch (e) {
                         console.error('Issue getting the league rules.');
-                        // throw new Error('No rules returned.')
+                        throw new Error('No rules returned.')
                     }
                 })
         }
