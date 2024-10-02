@@ -2,7 +2,11 @@
 
 import {createContext, useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
-import {useGetAllLeagueRules, useGetLeagueDraftDetails} from "@/hooks/draft-tracker/draft-tracker-hooks.jsx";
+import {
+    useGetCurrentDraftedRoster,
+    useGetLeagueDraftDetails,
+    useGetLeagueRules
+} from "@/hooks/draft-tracker/draft-tracker-hooks.jsx";
 import {SESSION_CONSTANTS} from "@/app-constants.js";
 import {useFirebaseSignInWithCustomToken, useRerouteIfUnauthenticated} from "@/hooks/hooks.jsx";
 
@@ -17,9 +21,12 @@ const DraftRoomContext = ({children}) => {
     useFirebaseSignInWithCustomToken(session?.user?.customToken);
 
     // League Draft Details
-    const draftDetails = useGetLeagueDraftDetails(session, status);
-    const timeAllowed = !!draftDetails?.TIME_PER_SELECTION
-        ? Number(draftDetails.TIME_PER_SELECTION)
+    const [currentDraftStatus, setCurrentDraftStatus] = useState({});
+    const [roster, setRoster] = useState({});
+    useGetLeagueDraftDetails(session, status, setCurrentDraftStatus);
+    useGetCurrentDraftedRoster(leagueName, session, status, setRoster);
+    const timeAllowed = !!currentDraftStatus?.TIME_PER_SELECTION
+        ? Number(currentDraftStatus.TIME_PER_SELECTION)
         : 0;
 
     // Timer State
@@ -29,20 +36,25 @@ const DraftRoomContext = ({children}) => {
 
     // Resets the timer when someone drafts a player
     useEffect(() => {
-        if (Object.keys(draftDetails)?.length > 0) {
+        if (Object.keys(currentDraftStatus)?.length > 0) {
             setRemainingTime(timeAllowed);
         }
-    }, [draftDetails]);
+    }, [currentDraftStatus]);
 
     // League Rules
-    const [leagueRules, setLeagueRules] = useState({});
-    useGetAllLeagueRules(leagueName, session, status, setLeagueRules);
+    const [leagueRules, setLeagueRules] = useState({
+        draft: {},
+        roster_construction: {},
+        scoring: {}
+    });
+    useGetLeagueRules(leagueName, session, status, setLeagueRules);
 
     return status === SESSION_CONSTANTS.LOADING
         ? <div>Loading...</div>
         : (
             <DraftContext.Provider value={{
-                leagueDraft: draftDetails,
+                leagueDraft: currentDraftStatus,
+                roster,
                 leagueName,
                 remainingTime,
                 setRemainingTime,
@@ -51,7 +63,9 @@ const DraftRoomContext = ({children}) => {
                 isRunning,
                 setIsRunning,
                 timeAllowed,
-                leagueRules,
+                draftRules: leagueRules.draft,
+                rosterConstruction: leagueRules.roster_construction,
+                scoringRules: leagueRules.scoring,
                 pauseTimer: () => {
                     setIsRunning(false);
                 },

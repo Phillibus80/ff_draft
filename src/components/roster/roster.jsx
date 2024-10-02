@@ -5,10 +5,10 @@ import {useContext} from "react";
 import {DraftContext} from "@/context/draft-room-context/draft-room-context.jsx";
 
 const Roster = () => {
-    const {leagueRules} = useContext(DraftContext);
-    if (!leagueRules) return;
+    const {roster} = useContext(DraftContext);
+    if (!roster) return;
 
-    const ruleEntries = Object.entries(leagueRules);
+    const ruleEntries = Object.entries(roster);
 
     return ruleEntries.length > 0
         ? (
