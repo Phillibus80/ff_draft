@@ -9,7 +9,6 @@ const DraftTracker = () => {
     const draftContext = useContext(DraftContext);
     if (!draftContext?.leagueDraft?.COMMISSIONER) return;
 
-
     const {
         COMMISSIONER: commish,
         CURRENT_DRAFT_POSITION: currentPos,

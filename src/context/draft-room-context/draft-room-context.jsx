@@ -9,13 +9,13 @@ import {useFirebaseSignInWithCustomToken, useRerouteIfUnauthenticated} from "@/h
 export const DraftContext = createContext(null);
 
 const DraftRoomContext = ({children}) => {
+    const leagueName = 'da_league';
+
     // Session Tasks
     const {data: session, status} = useSession();
 
     useRerouteIfUnauthenticated(status);
     useFirebaseSignInWithCustomToken(session?.user?.customToken);
-
-    const leagueName = 'da_league';
 
     // League Draft Details
     const draftDetails = useGetLeagueDraftDetails(session, status);
