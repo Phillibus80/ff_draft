@@ -57,8 +57,7 @@ export const ROUTES = {
 export const databaseRoutes = {
     LEAGUES: DB_TYPES.LEAGUES,
     MESSAGES: DB_TYPES.MESSAGES,
-    PLAYER_STATS_2022: 'players_stats_2022',
-    PLAYER_STATS_2023: 'players_stats_2023',
+    PLAYER_STATS: 'players_stats',
     RULES: DB_TYPES.RULES,
     USERS: DB_TYPES.USERS,
     DRAFT_POOL: DB_TYPES.DRAFT_POOL

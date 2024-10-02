@@ -1,6 +1,6 @@
 const DraftQueue = () => {
     return (
-        <></>
+        <>Hello</>
     );
 };
 
