@@ -1,6 +1,5 @@
 'use client';
 
-import {useFormState} from "react-dom";
 import styles from './login-form.module.scss';
 import {authenticate} from "@/app/actions/actions.js";
 import {useRef} from "react";
@@ -9,16 +8,13 @@ const LoginForm = () => {
     const userNameRef = useRef();
     const passwordRef = useRef();
 
-    const [, formAction] = useFormState(authenticate, {message: null});
+    const handleSubmit = async () => {
+        await authenticate(userNameRef.current, passwordRef.current);
+    }
 
     return (
         <form
-            action={() => {
-                console.log('Username:: ', userNameRef.current)
-                console.log('Password:: ', passwordRef.current)
-                authenticate(userNameRef.current, passwordRef.current)
-                    .then(res => console.log('Res:: ', res))
-            }}
+            action={handleSubmit}
             className={styles.login_form}
         >
             <input
