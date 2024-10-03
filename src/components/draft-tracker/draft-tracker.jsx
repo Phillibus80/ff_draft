@@ -7,7 +7,15 @@ import DraftQueue from "@/components/draft-tracker/draft-queue.jsx";
 import * as styles from './draft-tracker.module.scss';
 
 const DraftTracker = () => {
-    const {leagueDraft, draftRules, rosterConstruction} = useContext(DraftContext);
+    const {
+        leagueDraft,
+        draftRules,
+        rosterConstruction,
+        resetTimer,
+        resumeTimer,
+        pauseTimer,
+        isRunning
+    } = useContext(DraftContext);
     if (!leagueDraft || !draftRules || !rosterConstruction) return;
 
     const {
@@ -20,6 +28,11 @@ const DraftTracker = () => {
 
     return (<section className={styles.draft}>
         <Timer
+            isRunning={isRunning}
+            resumeTimer={resumeTimer}
+            resetTimer={resetTimer}
+            pauseTimer={pauseTimer}
+            leagueDraft={leagueDraft}
             currentTime={timestampOfSelected}
             timeAllowed={timePerPick}
         />

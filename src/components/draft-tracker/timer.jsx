@@ -2,23 +2,31 @@
 
 import {useCountDown, useUpdateTimerText} from "@/hooks/draft-tracker/timer-hooks.jsx";
 import styles from './draft-tracker.module.scss';
-import {useContext} from "react";
-import {DraftContext} from "@/context/draft-room-context/draft-room-context.jsx";
+import {useEffect, useState} from "react";
 
-const Timer = ({currentTime, timeAllowed}) => {
-    const {
+const Timer = (
+    {
+        leagueDraft,
+        currentTime,
+        timeAllowed,
+        isRunning,
         resetTimer,
         resumeTimer,
-        pauseTimer,
-        isRunning,
-        remainingTime,
-        setRemainingTime,
-        countDownText,
-        setCountDownText
-    } = useContext(DraftContext);
+        pauseTimer
+    }
+) => {
+    const [remainingTime, setRemainingTime] = useState(timeAllowed);
+    const [countDownText, setCountDownText] = useState('');
 
     useCountDown(isRunning, setRemainingTime, timeAllowed, currentTime);
     useUpdateTimerText(remainingTime, setCountDownText);
+
+    // Resets the timer when someone drafts a player
+    useEffect(() => {
+        if (Object.keys(leagueDraft)?.length > 0) {
+            setRemainingTime(timeAllowed);
+        }
+    }, [leagueDraft]);
 
     return (
         <section className={styles.timer}>
@@ -40,7 +48,10 @@ const Timer = ({currentTime, timeAllowed}) => {
                     Resume Draft
                 </button>
 
-                <button onClick={resetTimer}
+                <button onClick={() => {
+                    resetTimer();
+                    setRemainingTime(timeAllowed);
+                }}
                 >
                     Reset Draft
                 </button>

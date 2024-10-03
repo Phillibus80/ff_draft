@@ -9,15 +9,14 @@ const generateDraftQueue = (draftStyle, numberOfRounds, draftOrder) => {
 
     switch (draftStyle) {
         case DRAFT_TYPES.SNAKE :
-            const reversedOrder = draftOrder.reverse();
             for (let n = 0; n < numberOfRounds; n++) {
                 if (n % 2 === 0 || n === 0) {
                     for (let i = 0; i < draftOrder.length; i++) {
                         queue.push(draftOrder[i]);
                     }
                 } else {
-                    for (let i = 0; i < reversedOrder.length; i++) {
-                        queue.push(reversedOrder[i]);
+                    for (let j = draftOrder.length - 1; j >= 0; j--) {
+                        queue.push(draftOrder[j]);
                     }
                 }
             }
@@ -45,8 +44,8 @@ const DraftQueue = ({activeDraft, draftOrder, currentPosition, rules}) => {
 
     return <>
         {
-            draftOrder?.length > 0
-            && draftOrder.map(
+            draftQueue?.length > 0
+            && draftQueue.map(
                 (teamName, index) =>
                     <TeamDraftCard
                         key={`${teamName}-${index}`}

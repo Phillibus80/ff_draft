@@ -1,6 +1,6 @@
 "use client";
 
-import {createContext, useEffect, useState} from "react";
+import {createContext, useState} from "react";
 import {useSession} from "next-auth/react";
 import {
     useGetCurrentDraftedRoster,
@@ -30,16 +30,7 @@ const DraftRoomContext = ({children}) => {
         : 0;
 
     // Timer State
-    const [remainingTime, setRemainingTime] = useState(timeAllowed);
-    const [countDownText, setCountDownText] = useState('');
     const [isRunning, setIsRunning] = useState(true);
-
-    // Resets the timer when someone drafts a player
-    useEffect(() => {
-        if (Object.keys(currentDraftStatus)?.length > 0) {
-            setRemainingTime(timeAllowed);
-        }
-    }, [currentDraftStatus]);
 
     // League Rules
     const [leagueRules, setLeagueRules] = useState({
@@ -56,26 +47,15 @@ const DraftRoomContext = ({children}) => {
                 leagueDraft: currentDraftStatus,
                 roster,
                 leagueName,
-                remainingTime,
-                setRemainingTime,
-                countDownText,
-                setCountDownText,
                 isRunning,
                 setIsRunning,
                 timeAllowed,
                 draftRules: leagueRules.draft,
                 rosterConstruction: leagueRules.roster_construction,
                 scoringRules: leagueRules.scoring,
-                pauseTimer: () => {
-                    setIsRunning(false);
-                },
-                resumeTimer: () => {
-                    setIsRunning(true);
-                },
-                resetTimer: () => {
-                    setRemainingTime(timeAllowed);
-                    setIsRunning(false);
-                }
+                pauseTimer: () => setIsRunning(false),
+                resumeTimer: () => setIsRunning(true),
+                resetTimer: () => setIsRunning(false)
             }}>
                 {children}
             </DraftContext.Provider>
