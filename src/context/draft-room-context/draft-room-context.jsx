@@ -23,11 +23,16 @@ const DraftRoomContext = ({children}) => {
     // League Draft Details
     const [currentDraftStatus, setCurrentDraftStatus] = useState({});
     const [roster, setRoster] = useState({});
+    const [managerObjects, setManagerObjects] = useState([]);
+
     useGetLeagueDraftDetails(session, status, setCurrentDraftStatus);
     useGetCurrentDraftedRoster(leagueName, session, status, setRoster);
+
     const timeAllowed = !!currentDraftStatus?.TIME_PER_SELECTION
         ? Number(currentDraftStatus.TIME_PER_SELECTION)
         : 0;
+
+    console.log('Manager Objects:: ', managerObjects);
 
     // Timer State
     const [isRunning, setIsRunning] = useState(true);

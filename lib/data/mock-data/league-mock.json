@@ -3,7 +3,8 @@
     "NAME": "Da League",
     "MEMBERS": {
       "Phillibus": true,
-      "LittleJohn": true
+      "LittleJohn": true,
+      "SimonSAEYS": true
     },
     "DRAFT": {
       "START": "00000",
@@ -12,9 +13,9 @@
       "COMMISSIONER": "Phillibus",
       "CURRENT_DRAFT_POSITION": 1,
       "DRAFT_ORDER": {
-        "0": "crom_laughing",
-        "1": "the_ball_busters",
-        "2": "no_use_for_a_wall"
+        "0": "phillibus",
+        "1": "littlejohn",
+        "2": "simonsaeys"
       },
       "DRAFT_SELECTIONS": {
       }
