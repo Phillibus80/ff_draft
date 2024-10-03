@@ -7,7 +7,8 @@
         "tradesAllowed": true,
         "tradesRequireLeagueApproval": true,
         "numberOfTeamsToApprove": 1,
-        "draftStyle": "snake"
+        "draftStyle": "snake",
+        "numberOfRounds": 5
       },
       "roster_construction": {
         "NAME": "roster construction",

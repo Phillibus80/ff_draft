@@ -24,8 +24,10 @@ const DraftTracker = () => {
             timeAllowed={timePerPick}
         />
         <DraftQueue
+            activeDraft={leagueDraft}
             currentPosition={currentPos}
             draftOrder={draftOrder}
+            rules={draftRules}
         />
     </section>);
 };

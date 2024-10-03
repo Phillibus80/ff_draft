@@ -8,8 +8,7 @@
     "TEAM_MOTO": "Crush your enemies; see them driven before you; hear the lamentations of the women.",
     "LEAGUES": {
       "da_league": true
-    },
-    "PLAYERS": {}
+    }
   },
   {
     "NAME": "John",
@@ -20,7 +19,17 @@
     "TEAM_MOTO": "Something lame.",
     "LEAGUES": {
       "da_league": true
-    },
-    "PLAYERS": {}
+    }
+  },
+  {
+    "NAME": "Simon",
+    "USERNAME": "SimonSAEYS",
+    "EMAIL": "muahaahaaaa@beans.com",
+    "PASSWORD": "beansDidIt",
+    "TEAM_NAME": "No Use For a Wall",
+    "TEAM_MOTO": "Trabajo..Trabajo.",
+    "LEAGUES": {
+      "da_league": true
+    }
   }
 ]
