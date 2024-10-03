@@ -6,7 +6,9 @@ const isOneOfTheVisibleKeys = key => key === PLAYER_KEYS.NAME || key === PLAYER_
 export const getTableHeaders = (playerArr = []) => playerArr[0] && Object.keys(playerArr[0])
     .filter(key => key && isOneOfTheVisibleKeys(key))
     .map(
-        key => <th key={key}>
+        key => <th
+            className={'playerList_header'}
+            key={key}>
             {key === PLAYER_KEYS.PTS ? 'Total Fantasy Points' : key}
         </th>
     );

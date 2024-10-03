@@ -7,6 +7,7 @@ import ChatInput from "@/components/chat/chat-input.jsx";
 import {useSession} from "next-auth/react";
 import {getLeagueFromSession} from "../../../lib/util/utils.js";
 import {SESSION_CONSTANTS} from "@/app-constants.js";
+import * as styles from './messages.module.scss';
 
 const ChatContainer = () => {
     const [currentMessages, setCurrentMessages] = useState([]);
@@ -32,10 +33,13 @@ const ChatContainer = () => {
 
     return status === SESSION_CONSTANTS.LOADING
         ? <div>Loading...</div>
-        : (<>
+        : (
+            <section className={styles.chat_container}>
                 <ChatWindow messages={currentMessages}/>
-                <ChatInput/>
-            </>
+                <div className={styles.chat_input}>
+                    <ChatInput/>
+                </div>
+            </section>
         );
 }
 

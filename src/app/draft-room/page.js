@@ -8,13 +8,23 @@ import Roster from "@/components/roster/roster.jsx";
 
 export default function DraftRoom() {
     return (
-        <main className={styles.main}>
+        <main className={styles.draftMain}>
             <SessionProvider>
                 <DraftRoomContext>
                     <DraftTracker/>
-                    <Roster/>
-                    <PlayerList/>
-                    <ChatContainer/>
+                    <section className={styles.draftMain_dashboard}>
+                        <div className={styles.draftMain_dashboard_item}>
+                            <Roster/>
+                        </div>
+
+                        <div className={styles.draftMain_dashboard_item_large}>
+                            <PlayerList/>
+                        </div>
+
+                        <div className={styles.draftMain_dashboard_item}>
+                            <ChatContainer/>
+                        </div>
+                    </section>
                 </DraftRoomContext>
             </SessionProvider>
         </main>
