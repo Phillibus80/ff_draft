@@ -24,9 +24,15 @@ export const DB_TYPES = {
     DRAFT_POOL: 'draft-pool'
 };
 
-export const DB_TYPE_ENUM = Object.values(DB_TYPES);
+export const DRAFT_TYPES = {
+    SNAKE: 'snake',
+    AUCTION: 'auction',
+    REGULAR: 'regular'
+}
 
-export const PositionEnum = Object.values(POSITIONS);
+export const DB_TYPE_ENUM = Object.values(DB_TYPES);
+export const POSITION_ENUM = Object.values(POSITIONS);
+export const DRAFT_TYPE_ENUM = Object.values(DRAFT_TYPES);
 
 export const PREVIOUS_YEAR = new Date().getFullYear() - 1;
 
