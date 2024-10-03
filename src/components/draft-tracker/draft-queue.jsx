@@ -40,7 +40,7 @@ const DraftQueue = ({activeDraft, draftOrder, currentPosition, rules}) => {
         numberOfRounds
     } = rules;
     const draftQueue = generateDraftQueue(draftStyle, numberOfRounds, draftOrder);
-    console.log('Active Draft:: ', draftQueue);
+    console.log('Active Draft:: ', activeDraft);
 
     return <>
         {

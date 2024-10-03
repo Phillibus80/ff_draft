@@ -1,3 +1,5 @@
+"use client";
+
 import * as styles from './draft-tracker.module.scss';
 
 const TeamDraftCard = ({teamName}) => {
