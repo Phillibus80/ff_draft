@@ -28,8 +28,8 @@ const ChatInput = () => {
 
     return (
         <form id='form' onSubmit={handleSubmit} action=''>
-            <input ref={inputRef} autoComplete='off'/>
-            <button>Send</button>
+            <input name='message-input' ref={inputRef} autoComplete='off'/>
+            <button name='submit-btn'>Send</button>
         </form>
     );
 };

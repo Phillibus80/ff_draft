@@ -14,6 +14,7 @@ const LoginForm = () => {
 
     return (
         <form
+            id="login-form"
             action={handleSubmit}
             className={styles.login_form}
         >
@@ -24,6 +25,7 @@ const LoginForm = () => {
                 name='username'
                 type="text"
                 placeholder='Username'
+                autoComplete='username'
             />
             <input
                 onChange={event => {
@@ -32,9 +34,10 @@ const LoginForm = () => {
                 name='password'
                 type="password"
                 placeholder='Password'
+                autoComplete='off'
             />
 
-            <input type='submit' value='Log in'/>
+            <input id='submit-btn' type='submit' value='Log in'/>
         </form>
     );
 }
