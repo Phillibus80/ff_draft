@@ -5,7 +5,8 @@ import {useSession} from "next-auth/react";
 import {
     useGetCurrentDraftedRoster,
     useGetLeagueDraftDetails,
-    useGetLeagueRules
+    useGetLeagueRules,
+    useGetManagers
 } from "@/hooks/draft-tracker/draft-tracker-hooks.jsx";
 import {SESSION_CONSTANTS} from "@/app-constants.js";
 import {useFirebaseSignInWithCustomToken, useRerouteIfUnauthenticated} from "@/hooks/hooks.jsx";
@@ -17,22 +18,23 @@ const DraftRoomContext = ({children}) => {
 
     // Session Tasks
     const {data: session, status} = useSession();
+    console.log('Session:: ', session)
     useRerouteIfUnauthenticated(status);
     useFirebaseSignInWithCustomToken(session?.user?.customToken);
 
     // League Draft Details
-    const [currentDraftStatus, setCurrentDraftStatus] = useState({});
-    const [roster, setRoster] = useState({});
+    const [currentDraftStatus, setCurrentDraftStatus] = useState();
     const [managerObjects, setManagerObjects] = useState([]);
+    const [roster, setRoster] = useState({});
 
     useGetLeagueDraftDetails(session, status, setCurrentDraftStatus);
     useGetCurrentDraftedRoster(leagueName, session, status, setRoster);
+    useGetManagers(currentDraftStatus, setManagerObjects);
+    console.log('Manager Objects:: ', managerObjects);
 
     const timeAllowed = !!currentDraftStatus?.TIME_PER_SELECTION
         ? Number(currentDraftStatus.TIME_PER_SELECTION)
         : 0;
-
-    console.log('Manager Objects:: ', managerObjects);
 
     // Timer State
     const [isRunning, setIsRunning] = useState(true);
@@ -50,6 +52,7 @@ const DraftRoomContext = ({children}) => {
         : (
             <DraftContext.Provider value={{
                 leagueDraft: currentDraftStatus,
+                managers: managerObjects,
                 roster,
                 leagueName,
                 isRunning,
