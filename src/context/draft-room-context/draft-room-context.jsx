@@ -18,7 +18,6 @@ const DraftRoomContext = ({children}) => {
 
     // Session Tasks
     const {data: session, status} = useSession();
-    console.log('Session:: ', session)
     useRerouteIfUnauthenticated(status);
     useFirebaseSignInWithCustomToken(session?.user?.customToken);
 
@@ -30,7 +29,6 @@ const DraftRoomContext = ({children}) => {
     useGetLeagueDraftDetails(session, status, setCurrentDraftStatus);
     useGetCurrentDraftedRoster(leagueName, session, status, setRoster);
     useGetManagers(currentDraftStatus, setManagerObjects);
-    console.log('Manager Objects:: ', managerObjects);
 
     const timeAllowed = !!currentDraftStatus?.TIME_PER_SELECTION
         ? Number(currentDraftStatus.TIME_PER_SELECTION)

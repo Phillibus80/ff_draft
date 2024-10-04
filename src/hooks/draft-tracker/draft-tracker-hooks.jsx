@@ -1,6 +1,7 @@
 /**
  * @typedef {import('../../../lib/jsdoc/types.js').Session} Session
  * @typedef {import('../../../lib/jsdoc/types.js').LeagueDraftRules} LeagueDraftRules
+ * @typedef {import('../../../lib/jsdoc/types.js').SessionAuthStatus} SessionAuthStatus
  */
 
 import {useEffect} from "react";
@@ -18,7 +19,7 @@ import {getUser} from "../../../lib/league/getUser.js";
  * league name, members (as in usernames), and the players selected in the draft.
  *
  * @param {Session} session - the user's session object returned from the server
- * @param {string} status - the authentication status of the session cookie
+ * @param {SessionAuthStatus} status - the authentication status of the session cookie
  * @param {function} setStateCallback - the setState callback function the receives the manager's data objects
  */
 export const useGetLeagueDraftDetails = (session, status, setStateCallback) => {
@@ -41,7 +42,7 @@ export const useGetLeagueDraftDetails = (session, status, setStateCallback) => {
  *
  * @param {string} leagueName - the league name key
  * @param {Session} session - the user's session object returned from the server
- * @param {string} status - the authentication status of the session cookie
+ * @param {SessionAuthStatus} status - the authentication status of the session cookie
  * @param {function} setStateCallback - the setState callback function the receives the manager's data objects
  */
 export const useGetCurrentDraftedRoster = (leagueName, session, status, setStateCallback) => {
@@ -80,7 +81,7 @@ export const useGetCurrentDraftedRoster = (leagueName, session, status, setState
  *
  * @param {string} leagueName - the league name key
  * @param {Session} session - the user's session object returned from the server
- * @param {string} status - the authentication status of the session cookie
+ * @param {SessionAuthStatus} status - the authentication status of the session cookie
  * @param {function} setStateCallback - the setState callback function the receives the manager's data objects
  */
 export const useGetLeagueRules = (leagueName, session, status, setStateCallback) => {
