@@ -12,6 +12,7 @@ import {getAllRules} from "../../../lib/rules/rules.js";
 import {getRosterSlots} from "../../../lib/util/roster-utils.js";
 import {getDraftedPlayers} from "../../../lib/players/draftPlayer.js";
 import {getUser} from "../../../lib/league/getUser.js";
+import {generateDraftQueue} from "../../../lib/util/draft-queue-utils.js";
 
 /**
  * A hook used to connect to the realtime database and retrieve the league's
@@ -128,4 +129,26 @@ export const useGetManagers = (draftRules, setStateCallback) => {
         }
 
     }, [draftRules?.DRAFT_ORDER]);
+}
+
+/**
+ * A hook that generates the entire draft queue based on the league's draft rules and the original draft order.
+ *
+ * @param {function} setStateCallback - the setState callback that sets the draft queue
+ * @param {LeagueDraftRules} leagueDraft - the state of the league during the draft
+ * @param {RulesResponse} draftRules - the rule configuration for the league's draft
+ * @param {Array<GetUserResponse>} managers - an array of the league's manager objects
+ */
+export const useGetDraftQueue = (setStateCallback, leagueDraft, draftRules, managers) => {
+    useEffect(() => {
+        if (!!draftRules && !!leagueDraft?.DRAFT_ORDER) {
+            const {DRAFT_ORDER: draftOrder} = leagueDraft;
+            const {draftStyle, numberOfRounds} = draftRules;
+
+            const draftQueue = generateDraftQueue(draftStyle, numberOfRounds, draftOrder, managers);
+
+            setStateCallback(draftQueue);
+        }
+
+    }, [managers, leagueDraft, draftRules]);
 }

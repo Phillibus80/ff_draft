@@ -4,6 +4,7 @@ import {createContext, useState} from "react";
 import {useSession} from "next-auth/react";
 import {
     useGetCurrentDraftedRoster,
+    useGetDraftQueue,
     useGetLeagueDraftDetails,
     useGetLeagueRules,
     useGetManagers
@@ -21,14 +22,24 @@ const DraftRoomContext = ({children}) => {
     useRerouteIfUnauthenticated(status);
     useFirebaseSignInWithCustomToken(session?.user?.customToken);
 
+    // League Config
+    const [leagueRules, setLeagueRules] = useState({
+        draft: {},
+        roster_construction: {},
+        scoring: {}
+    });
+    useGetLeagueRules(leagueName, session, status, setLeagueRules);
+
     // League Draft Details
     const [currentDraftStatus, setCurrentDraftStatus] = useState();
     const [managerObjects, setManagerObjects] = useState([]);
     const [roster, setRoster] = useState({});
+    const [draftQueue, setDraftQueue] = useState();
 
     useGetLeagueDraftDetails(session, status, setCurrentDraftStatus);
     useGetCurrentDraftedRoster(leagueName, session, status, setRoster);
     useGetManagers(currentDraftStatus, setManagerObjects);
+    useGetDraftQueue(setDraftQueue, currentDraftStatus, leagueRules.draft, managerObjects)
 
     const timeAllowed = !!currentDraftStatus?.TIME_PER_SELECTION
         ? Number(currentDraftStatus.TIME_PER_SELECTION)
@@ -37,20 +48,12 @@ const DraftRoomContext = ({children}) => {
     // Timer State
     const [isRunning, setIsRunning] = useState(true);
 
-    // League Rules
-    const [leagueRules, setLeagueRules] = useState({
-        draft: {},
-        roster_construction: {},
-        scoring: {}
-    });
-    useGetLeagueRules(leagueName, session, status, setLeagueRules);
-
     return status === SESSION_CONSTANTS.LOADING
         ? <div>Loading...</div>
         : (
             <DraftContext.Provider value={{
                 leagueDraft: currentDraftStatus,
-                managers: managerObjects,
+                draftQueue,
                 roster,
                 leagueName,
                 isRunning,
