@@ -9,6 +9,7 @@ import * as styles from './draft-tracker.module.scss';
 const DraftTracker = () => {
     const {
         leagueDraft,
+        draftQueue,
         draftRules,
         rosterConstruction,
         resetTimer,
@@ -37,10 +38,7 @@ const DraftTracker = () => {
             timeAllowed={timePerPick}
         />
         <DraftQueue
-            activeDraft={leagueDraft}
-            currentPosition={currentPos}
-            draftOrder={draftOrder}
-            rules={draftRules}
+            draftQueue={draftQueue}
         />
     </section>);
 };

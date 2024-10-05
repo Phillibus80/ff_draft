@@ -1,19 +1,19 @@
 "use client";
 
 import TeamDraftCard from "@/components/draft-tracker/team-draft-card.jsx";
-import {generateDraftQueue} from "../../../lib/util/draft-queue-utils.js";
 
-const DraftQueue = ({activeDraft, draftOrder, currentPosition, rules}) => {
-    const {
-        draftStyle, numberOfRounds
-    } = rules;
-    const draftQueue = generateDraftQueue(draftStyle, numberOfRounds, draftOrder);
-
+const DraftQueue = ({draftQueue}) => {
     return <>
-        {draftQueue?.length > 0 && draftQueue.map((teamName, index) => <TeamDraftCard
-            key={`${teamName}-${index}`}
-            teamName={teamName}
-        />)}
+        {
+            draftQueue?.length > 0
+            && !!draftQueue[0]?.TEAM_NAME
+            && draftQueue.map(({TEAM_NAME, TEAM_MOTO}, index) =>
+                <TeamDraftCard
+                    key={`${TEAM_NAME}-${index}`}
+                    teamName={TEAM_NAME}
+                    teamMoto={TEAM_MOTO}
+                    draftPosition={index + 1}
+                />)}
     </>
 };
 
