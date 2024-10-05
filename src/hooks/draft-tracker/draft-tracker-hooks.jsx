@@ -85,7 +85,7 @@ export const useGetCurrentDraftedRoster = (leagueName, session, status, setState
  * @param {SessionAuthStatus} status - the authentication status of the session cookie
  * @param {function} setStateCallback - the setState callback function the receives the manager's data objects
  */
-export const useGetLeagueRules = (leagueName, session, status, setStateCallback) => {
+export const useGetLeagueConfig = (leagueName, session, status, setStateCallback) => {
     useEffect(() => {
         const leagueKey = stripStr(leagueName);
         let unsubscribe;
@@ -135,7 +135,7 @@ export const useGetManagers = (draftRules, setStateCallback) => {
  * A hook that generates the entire draft queue based on the league's draft rules and the original draft order.
  *
  * @param {function} setStateCallback - the setState callback that sets the draft queue
- * @param {LeagueDraftRules} leagueDraft - the state of the league during the draft
+ * @param {LeagueDraftRules} leagueDraft - the league rules and state of the league during the draft
  * @param {RulesResponse} draftRules - the rule configuration for the league's draft
  * @param {Array<GetUserResponse>} managers - an array of the league's manager objects
  */

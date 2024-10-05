@@ -5,8 +5,8 @@ import {useSession} from "next-auth/react";
 import {
     useGetCurrentDraftedRoster,
     useGetDraftQueue,
+    useGetLeagueConfig,
     useGetLeagueDraftDetails,
-    useGetLeagueRules,
     useGetManagers
 } from "@/hooks/draft-tracker/draft-tracker-hooks.jsx";
 import {SESSION_CONSTANTS} from "@/app-constants.js";
@@ -22,31 +22,28 @@ const DraftRoomContext = ({children}) => {
     useRerouteIfUnauthenticated(status);
     useFirebaseSignInWithCustomToken(session?.user?.customToken);
 
-    // League Config
-    const [leagueRules, setLeagueRules] = useState({
+    // Timer State
+    const [isRunning, setIsRunning] = useState(true);
+    // League Config and Draft Details
+    const [leagueConfig, setLeagueConfig] = useState({
         draft: {},
         roster_construction: {},
         scoring: {}
     });
-    useGetLeagueRules(leagueName, session, status, setLeagueRules);
-
-    // League Draft Details
     const [currentDraftStatus, setCurrentDraftStatus] = useState();
     const [managerObjects, setManagerObjects] = useState([]);
     const [roster, setRoster] = useState({});
     const [draftQueue, setDraftQueue] = useState();
 
+    useGetLeagueConfig(leagueName, session, status, setLeagueConfig);
     useGetLeagueDraftDetails(session, status, setCurrentDraftStatus);
     useGetCurrentDraftedRoster(leagueName, session, status, setRoster);
     useGetManagers(currentDraftStatus, setManagerObjects);
-    useGetDraftQueue(setDraftQueue, currentDraftStatus, leagueRules.draft, managerObjects)
+    useGetDraftQueue(setDraftQueue, currentDraftStatus, leagueConfig.draft, managerObjects)
 
     const timeAllowed = !!currentDraftStatus?.TIME_PER_SELECTION
         ? Number(currentDraftStatus.TIME_PER_SELECTION)
         : 0;
-
-    // Timer State
-    const [isRunning, setIsRunning] = useState(true);
 
     return status === SESSION_CONSTANTS.LOADING
         ? <div>Loading...</div>
@@ -59,9 +56,9 @@ const DraftRoomContext = ({children}) => {
                 isRunning,
                 setIsRunning,
                 timeAllowed,
-                draftRules: leagueRules.draft,
-                rosterConstruction: leagueRules.roster_construction,
-                scoringRules: leagueRules.scoring,
+                draftRules: leagueConfig.draft,
+                rosterConstruction: leagueConfig.roster_construction,
+                scoringRules: leagueConfig.scoring,
                 pauseTimer: () => setIsRunning(false),
                 resumeTimer: () => setIsRunning(true),
                 resetTimer: () => setIsRunning(false)
