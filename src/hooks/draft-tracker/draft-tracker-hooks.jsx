@@ -134,14 +134,20 @@ export const useGetManagers = (draftRules, setStateCallback) => {
 /**
  * A hook that generates the entire draft queue based on the league's draft rules and the original draft order.
  *
+ * @param {Array<GetUserResponse>} prevDraftQue - previous state of the draft queue
  * @param {function} setStateCallback - the setState callback that sets the draft queue
  * @param {LeagueDraftRules} leagueDraft - the league rules and state of the league during the draft
  * @param {RulesResponse} draftRules - the rule configuration for the league's draft
  * @param {Array<GetUserResponse>} managers - an array of the league's manager objects
  */
-export const useGetDraftQueue = (setStateCallback, leagueDraft, draftRules, managers) => {
+export const useGetDraftQueue = (prevDraftQue, setStateCallback, leagueDraft, draftRules, managers) => {
+    const shouldPopulateQue = !prevDraftQue
+        || prevDraftQue?.length === 0
+        || (prevDraftQue?.length > 0 && !prevDraftQue[0]);
+    const hasDataLoaded = !!draftRules?.draftStyle && !!leagueDraft?.DRAFT_ORDER;
+
     useEffect(() => {
-        if (!!draftRules && !!leagueDraft?.DRAFT_ORDER) {
+        if (shouldPopulateQue && hasDataLoaded) {
             const {DRAFT_ORDER: draftOrder} = leagueDraft;
             const {draftStyle, numberOfRounds} = draftRules;
 
