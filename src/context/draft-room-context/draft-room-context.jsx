@@ -33,13 +33,13 @@ const DraftRoomContext = ({children}) => {
     const [currentDraftStatus, setCurrentDraftStatus] = useState();
     const [managerObjects, setManagerObjects] = useState([]);
     const [roster, setRoster] = useState({});
-    const [draftQueue, setDraftQueue] = useState();
+    const [draftQueue, setDraftQueue] = useState([]);
 
     useGetLeagueConfig(leagueName, session, status, setLeagueConfig);
     useGetLeagueDraftDetails(session, status, setCurrentDraftStatus);
     useGetCurrentDraftedRoster(leagueName, session, status, setRoster);
     useGetManagers(currentDraftStatus, setManagerObjects);
-    useGetDraftQueue(setDraftQueue, currentDraftStatus, leagueConfig.draft, managerObjects)
+    useGetDraftQueue(draftQueue, setDraftQueue, currentDraftStatus, leagueConfig.draft, managerObjects)
 
     const timeAllowed = !!currentDraftStatus?.TIME_PER_SELECTION
         ? Number(currentDraftStatus.TIME_PER_SELECTION)
@@ -61,7 +61,8 @@ const DraftRoomContext = ({children}) => {
                 scoringRules: leagueConfig.scoring,
                 pauseTimer: () => setIsRunning(false),
                 resumeTimer: () => setIsRunning(true),
-                resetTimer: () => setIsRunning(false)
+                resetTimer: () => setIsRunning(false),
+                setDraftQueue: setDraftQueue
             }}>
                 {children}
             </DraftContext.Provider>

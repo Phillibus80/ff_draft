@@ -28,14 +28,15 @@ const DraftTracker = () => {
     } = leagueDraft;
 
     return (<section className={styles.draft}>
+        {/*TODO remove the extra props*/}
         <Timer
-            isRunning={isRunning}
-            resumeTimer={resumeTimer}
-            resetTimer={resetTimer}
-            pauseTimer={pauseTimer}
             leagueDraft={leagueDraft}
             currentTime={timestampOfSelected}
+            isRunning={isRunning}
             timeAllowed={timePerPick}
+            resetTimer={resetTimer}
+            resumeTimer={resumeTimer}
+            pauseTimer={pauseTimer}
         />
         <DraftQueue
             draftQueue={draftQueue}

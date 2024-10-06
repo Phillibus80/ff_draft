@@ -19,11 +19,12 @@ const Timer = (
     const [countDownText, setCountDownText] = useState('');
 
     useCountDown(isRunning, setRemainingTime, timeAllowed, currentTime);
-    useUpdateTimerText(remainingTime, setCountDownText);
+    useUpdateTimerText(timeAllowed, remainingTime, setCountDownText);
 
     // Resets the timer when someone drafts a player
     useEffect(() => {
         if (Object.keys(leagueDraft)?.length > 0) {
+            console.log(timeAllowed);
             setRemainingTime(timeAllowed);
         }
     }, [leagueDraft]);

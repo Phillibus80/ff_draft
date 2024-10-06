@@ -1,4 +1,5 @@
 import {useEffect} from "react";
+import {msToMinSec} from "../../../lib/util/utils.js";
 
 /**
  * A hook used to create a countdown timer.  It starts at the timeAllowed and counts down every second.
@@ -30,16 +31,22 @@ export const useCountDown = (isRunning, setRemainingTime, timeAllowed, currentTi
 /**
  * A hook used to create the text for a countdown timer.
  *
+ * @param {number} timeAllowed - total time in ms for the user to either trade or draft a player
  * @param {number} remainingTime - the remaining time in ms to either trade or draft a player
  * @param {function} setCountDownText - setState callback with the timer text
  */
-export const useUpdateTimerText = (remainingTime, setCountDownText) => {
+export const useUpdateTimerText = (timeAllowed, remainingTime, setCountDownText) => {
     const date = new Date(remainingTime);
+    const dateTimeAllowed = msToMinSec(timeAllowed);
 
     useEffect(() => {
         const min = date.getMinutes();
         const sec = date.getSeconds();
 
-        setCountDownText(`${min}:${sec < 10 ? '0' : ''}${sec}`);
+        const result = min === 0 && sec === 0
+            ? dateTimeAllowed
+            : `${min}:${sec < 10 ? '0' : ''}${sec}`;
+
+        setCountDownText(result);
     }, [remainingTime]);
 }
