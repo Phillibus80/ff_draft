@@ -12,7 +12,8 @@ export const POSITIONS = {
     S: 'S',
     KR: 'KR',
     PR: 'PR',
-    DEF: 'DEF'
+    DEF: 'DEF',
+    BENCH: 'BENCH'
 }
 
 export const DB_TYPES = {
@@ -53,7 +54,8 @@ export const positionVisualOrder = [
     POSITIONS.OP,
     POSITIONS.FLEX,
     POSITIONS.DEF,
-    POSITIONS.K
+    POSITIONS.K,
+    POSITIONS.BENCH
 ];
 
 export const ROUTES = {
