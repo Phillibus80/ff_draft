@@ -39,7 +39,8 @@ export const PREVIOUS_YEAR = new Date().getFullYear() - 1;
 export const PLAYER_KEYS = {
     NAME: 'NAME',
     POSITION: 'POS',
-    PTS: 'FPTS'
+    PTS: 'FPTS',
+    TEAM: 'TEAM'
 };
 
 export const PAGINATION_SIZE = 25;
@@ -73,5 +74,4 @@ export const SESSION_CONSTANTS = {
     LOADING: 'loading',
     AUTHENTICATED: 'authenticated',
     UNAUTHENTICATED: 'unauthenticated'
-
 }

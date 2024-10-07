@@ -24,7 +24,6 @@ const Timer = (
     // Resets the timer when someone drafts a player
     useEffect(() => {
         if (Object.keys(leagueDraft)?.length > 0) {
-            console.log(timeAllowed);
             setRemainingTime(timeAllowed);
         }
     }, [leagueDraft]);
