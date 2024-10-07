@@ -22,8 +22,6 @@ const DraftRoomContext = ({children}) => {
     useRerouteIfUnauthenticated(status);
     useFirebaseSignInWithCustomToken(session?.user?.customToken);
 
-    // Timer State
-    const [isRunning, setIsRunning] = useState(true);
     // League Config and Draft Details
     const [leagueConfig, setLeagueConfig] = useState({
         draft: {},
@@ -34,7 +32,10 @@ const DraftRoomContext = ({children}) => {
     const [managerObjects, setManagerObjects] = useState([]);
     const [roster, setRoster] = useState({});
     const [draftQueue, setDraftQueue] = useState([]);
+    // Timer State
+    const [isRunning, setIsRunning] = useState(true);
 
+    // Hooks for handling the state variables
     useGetLeagueConfig(leagueName, session, status, setLeagueConfig);
     useGetLeagueDraftDetails(session, status, setCurrentDraftStatus);
     useGetCurrentDraftedRoster(leagueName, session, status, setRoster);

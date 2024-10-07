@@ -5,7 +5,7 @@
  */
 
 import {useEffect} from "react";
-import {SESSION_CONSTANTS} from "@/app-constants.js";
+import {positionVisualOrder, SESSION_CONSTANTS} from "@/app-constants.js";
 import {getLeagueFromSession, stripStr} from "../../../lib/util/utils.js";
 import {getLeagueDraftUpdates} from "../../../lib/league/leagueDraft.js";
 import {getAllRules} from "../../../lib/rules/rules.js";
@@ -59,12 +59,34 @@ export const useGetCurrentDraftedRoster = (leagueName, session, status, setState
                     try {
                         const {config: {roster_construction}} = res;
 
+                        // TODO refactor this
                         const rosterMap = getRosterSlots(roster_construction);
+                        const rosterEntries = Object.entries(rosterMap);
+                        const sorted = positionVisualOrder
+                            // filter the roster with the position types and return an array filled with
+                            // roster key(position)/value(player) objects
+                            .map(positionKey => {
+                                return rosterEntries
+                                    .filter(([key, _]) => key.includes(positionKey))
+                                    .reduce((accum, [key, value]) => {
+                                        accum[key] = value;
+                                        return accum;
+                                    }, {});
+                            })
+                            //Flatten the array and convert to object
+                            .reduce((accum, current) => {
+                                const currentEntries = Object.entries(current);
+                                currentEntries.forEach(([key, value]) => {
+                                    accum[key] = value;
+                                });
+
+                                return accum;
+                            }, {});
 
                         // Populate the roster with drafted players
                         const teamKey = stripStr(session?.user?.team);
-                        unsubscribe = getDraftedPlayers(leagueKey, teamKey, rosterMap, setStateCallback);
-                        setStateCallback(prevState => ({...rosterMap, ...prevState}));
+                        unsubscribe = getDraftedPlayers(leagueKey, teamKey, sorted, setStateCallback);
+                        setStateCallback(prevState => ({...sorted, ...prevState}));
                     } catch (e) {
                         console.error('Issue getting the drafted roster.');
                         throw new Error('No roster returned.')
@@ -137,7 +159,7 @@ export const useGetManagers = (draftRules, setStateCallback) => {
  * @param {Array<GetUserResponse>} prevDraftQue - previous state of the draft queue
  * @param {function} setStateCallback - the setState callback that sets the draft queue
  * @param {LeagueDraftRules} leagueDraft - the league rules and state of the league during the draft
- * @param {RulesResponse} draftRules - the rule configuration for the league's draft
+ * @param {draftConfig} draftRules - the rule configuration for the league's draft
  * @param {Array<GetUserResponse>} managers - an array of the league's manager objects
  */
 export const useGetDraftQueue = (prevDraftQue, setStateCallback, leagueDraft, draftRules, managers) => {
