@@ -3,6 +3,7 @@
 import {useCountDown, useUpdateTimerText} from "@/hooks/draft-tracker/timer-hooks.jsx";
 import styles from './draft-tracker.module.scss';
 import {useState} from "react";
+import DraftControls from "@/components/draft-tracker/draft-controls.jsx";
 
 const Timer = (
     {
@@ -11,7 +12,8 @@ const Timer = (
         isRunning,
         resetTimer,
         resumeTimer,
-        pauseTimer
+        pauseTimer,
+        isCommish
     }
 ) => {
     const [remainingTime, setRemainingTime] = useState(timeAllowed);
@@ -24,29 +26,17 @@ const Timer = (
         <section className={styles.timer}>
             <p>{countDownText}</p>
 
-            <div className={styles.button_group}>
-                <button onClick={() =>
-                    Promise.all([resetTimer(), resumeTimer()])}
-                >
-                    Start Draft
-                </button>
-
-                <button onClick={pauseTimer}>
-                    Pause Draft
-                </button>
-
-                <button onClick={() => resumeTimer(remainingTime)}>
-                    Resume Draft
-                </button>
-
-                <button onClick={() => {
-                    resetTimer();
-                    setRemainingTime(timeAllowed);
-                }}
-                >
-                    Reset Draft
-                </button>
-            </div>
+            {
+                isCommish &&
+                <DraftControls
+                    timeAllowed={timeAllowed}
+                    resetTimer={resetTimer}
+                    resumeTimer={resumeTimer}
+                    pauseTimer={pauseTimer}
+                    setRemainingTime={setRemainingTime}
+                    remainingTime={remainingTime}
+                />
+            }
         </section>
     );
 };
