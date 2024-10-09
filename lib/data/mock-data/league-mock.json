@@ -8,6 +8,7 @@
     },
     "DRAFT": {
       "START": "00000",
+      "IS_RUNNING": false,
       "TIME_PER_SELECTION": "120000",
       "TIMESTAMP_OF_LAST_SELECTION": "00000",
       "COMMISSIONER": "Phillibus",
