@@ -17,14 +17,14 @@ const ChatContainer = () => {
 
     useGetAllMessages(session, status, setCurrentMessages, lastKey, setLastKey);
 
-    return status === SESSION_CONSTANTS.AUTHENTICATED ?? (
+    return status === SESSION_CONSTANTS.AUTHENTICATED ? (
         <section className={styles.chat_container}>
             <ChatWindow messages={currentMessages}/>
             <div className={styles.chat_input}>
                 <ChatInput/>
             </div>
         </section>
-    );
+    ) : null;
 }
 
 export default ChatContainer;
