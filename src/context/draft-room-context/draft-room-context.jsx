@@ -56,7 +56,9 @@ const DraftRoomContext = ({children}) => {
         ? <div>Loading...</div>
         : (
             <DraftContext.Provider value={{
+                authStatus: status,
                 user: session?.user?.uid,
+                teamName: session?.user?.team,
                 leagueDraft: currentDraftStatus,
                 draftQueue,
                 roster,
