@@ -8,12 +8,9 @@ import DraftControls from "@/components/draft-tracker/draft-controls.jsx";
 const Timer = (
     {
         currentTime,
-        timeAllowed,
+        isCommish,
         isRunning,
-        resetTimer,
-        resumeTimer,
-        pauseTimer,
-        isCommish
+        timeAllowed
     }
 ) => {
     const [remainingTime, setRemainingTime] = useState(timeAllowed);
@@ -30,11 +27,7 @@ const Timer = (
                 isCommish &&
                 <DraftControls
                     timeAllowed={timeAllowed}
-                    resetTimer={resetTimer}
-                    resumeTimer={resumeTimer}
-                    pauseTimer={pauseTimer}
                     setRemainingTime={setRemainingTime}
-                    remainingTime={remainingTime}
                 />
             }
         </section>

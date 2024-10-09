@@ -46,6 +46,13 @@ const DraftRoomContext = ({children}) => {
         ? Number(currentDraftStatus.TIME_PER_SELECTION)
         : 0;
 
+    const startDraft = () =>
+        Promise.all([
+                resumeTimer(),
+                setLeagueDraftIsRunning(leagueName, true, true)
+            ]
+        );
+
     const pauseTimer = () => setLeagueDraftIsRunning(leagueName, false);
 
     const resumeTimer = () => setLeagueDraftIsRunning(leagueName, true);
@@ -68,6 +75,7 @@ const DraftRoomContext = ({children}) => {
                 draftRules: leagueConfig.draft,
                 rosterConstruction: leagueConfig.roster_construction,
                 scoringRules: leagueConfig.scoring,
+                startDraft: startDraft,
                 pauseTimer: pauseTimer,
                 resumeTimer: resumeTimer,
                 resetTimer: resetTimer,
