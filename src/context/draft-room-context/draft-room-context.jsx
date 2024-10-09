@@ -20,7 +20,6 @@ const DraftRoomContext = ({children}) => {
 
     // Session Tasks
     const {data: session, status} = useSession();
-    console.log('Session:: ', session)
     useRerouteIfUnauthenticated(status);
     useFirebaseSignInWithCustomToken(session?.user?.customToken);
 
@@ -35,16 +34,14 @@ const DraftRoomContext = ({children}) => {
     const [roster, setRoster] = useState({});
     const [draftQueue, setDraftQueue] = useState([]);
 
-    // Hooks for handling the state variables
+    // Hooks for handling the context state
     useGetLeagueConfig(leagueName, session, status, setLeagueConfig);
     useGetLeagueDraftDetails(session, status, setCurrentDraftStatus);
     useGetCurrentDraftedRoster(leagueName, session, status, setRoster);
     useGetManagers(currentDraftStatus, setManagerObjects);
     useGetDraftQueue(draftQueue, setDraftQueue, currentDraftStatus, leagueConfig.draft, managerObjects)
 
-    // Timer State
-    const [isRunning, setIsRunning] = useState(currentDraftStatus?.IS_RUNNING);
-
+    // Timer
     const timeAllowed = !!currentDraftStatus?.TIME_PER_SELECTION
         ? Number(currentDraftStatus.TIME_PER_SELECTION)
         : 0;
@@ -65,7 +62,6 @@ const DraftRoomContext = ({children}) => {
                 roster,
                 leagueName,
                 isRunning: currentDraftStatus?.IS_RUNNING,
-                setIsRunning,
                 timeAllowed,
                 draftRules: leagueConfig.draft,
                 rosterConstruction: leagueConfig.roster_construction,

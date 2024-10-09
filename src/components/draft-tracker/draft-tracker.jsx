@@ -31,12 +31,10 @@ const DraftTracker = () => {
     const isUserCommissioner = stripStr(user) === stripStr(commish);
 
     return (<section className={styles.draft}>
-        {/*TODO remove the extra props*/}
         <Timer
             isCommish={isUserCommissioner}
             leagueDraft={leagueDraft}
             currentTime={timestampOfSelected}
-            isRunning={isRunning}
             timeAllowed={timePerPick}
             resetTimer={resetTimer}
             resumeTimer={resumeTimer}
