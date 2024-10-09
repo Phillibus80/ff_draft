@@ -5,9 +5,11 @@ import {useContext} from "react";
 import {DraftContext} from "@/context/draft-room-context/draft-room-context.jsx";
 import DraftQueue from "@/components/draft-tracker/draft-queue.jsx";
 import * as styles from './draft-tracker.module.scss';
+import {stripStr} from "../../../lib/util/utils.js";
 
 const DraftTracker = () => {
     const {
+        user,
         leagueDraft,
         draftQueue,
         draftRules,
@@ -22,14 +24,16 @@ const DraftTracker = () => {
     const {
         COMMISSIONER: commish,
         CURRENT_DRAFT_POSITION: currentPos,
-        DRAFT_ORDER: draftOrder,
         TIMESTAMP_OF_LAST_SELECTION: timestampOfSelected,
         TIME_PER_SELECTION: timePerPick
     } = leagueDraft;
 
+    const isUserCommissioner = stripStr(user) === stripStr(commish);
+
     return (<section className={styles.draft}>
         {/*TODO remove the extra props*/}
         <Timer
+            isCommish={isUserCommissioner}
             leagueDraft={leagueDraft}
             currentTime={timestampOfSelected}
             isRunning={isRunning}

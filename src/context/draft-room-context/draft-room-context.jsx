@@ -20,6 +20,7 @@ const DraftRoomContext = ({children}) => {
 
     // Session Tasks
     const {data: session, status} = useSession();
+    console.log('Session:: ', session)
     useRerouteIfUnauthenticated(status);
     useFirebaseSignInWithCustomToken(session?.user?.customToken);
 
@@ -58,6 +59,7 @@ const DraftRoomContext = ({children}) => {
         ? <div>Loading...</div>
         : (
             <DraftContext.Provider value={{
+                user: session?.user?.uid,
                 leagueDraft: currentDraftStatus,
                 draftQueue,
                 roster,
