@@ -2,11 +2,10 @@
 
 import {useCountDown, useUpdateTimerText} from "@/hooks/draft-tracker/timer-hooks.jsx";
 import styles from './draft-tracker.module.scss';
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 const Timer = (
     {
-        leagueDraft,
         currentTime,
         timeAllowed,
         isRunning,
@@ -21,22 +20,14 @@ const Timer = (
     useCountDown(isRunning, setRemainingTime, timeAllowed, currentTime);
     useUpdateTimerText(timeAllowed, remainingTime, setCountDownText);
 
-    // Resets the timer when someone drafts a player
-    useEffect(() => {
-        if (Object.keys(leagueDraft)?.length > 0) {
-            setRemainingTime(timeAllowed);
-        }
-    }, [leagueDraft]);
-
     return (
         <section className={styles.timer}>
             <p>{countDownText}</p>
 
             <div className={styles.button_group}>
-                <button onClick={() => {
-                    resetTimer();
-                    resumeTimer();
-                }}>
+                <button onClick={() =>
+                    Promise.all([resetTimer(), resumeTimer()])}
+                >
                     Start Draft
                 </button>
 
@@ -44,7 +35,7 @@ const Timer = (
                     Pause Draft
                 </button>
 
-                <button onClick={resumeTimer}>
+                <button onClick={() => resumeTimer(remainingTime)}>
                     Resume Draft
                 </button>
 

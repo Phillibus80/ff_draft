@@ -11,6 +11,7 @@ import {
 } from "@/hooks/draft-tracker/draft-tracker-hooks.jsx";
 import {SESSION_CONSTANTS} from "@/app-constants.js";
 import {useFirebaseSignInWithCustomToken, useRerouteIfUnauthenticated} from "@/hooks/hooks.jsx";
+import {setLeagueDraftIsRunning} from "../../../lib/league/leagueDraft.js";
 
 export const DraftContext = createContext(null);
 
@@ -32,8 +33,6 @@ const DraftRoomContext = ({children}) => {
     const [managerObjects, setManagerObjects] = useState([]);
     const [roster, setRoster] = useState({});
     const [draftQueue, setDraftQueue] = useState([]);
-    // Timer State
-    const [isRunning, setIsRunning] = useState(true);
 
     // Hooks for handling the state variables
     useGetLeagueConfig(leagueName, session, status, setLeagueConfig);
@@ -42,9 +41,18 @@ const DraftRoomContext = ({children}) => {
     useGetManagers(currentDraftStatus, setManagerObjects);
     useGetDraftQueue(draftQueue, setDraftQueue, currentDraftStatus, leagueConfig.draft, managerObjects)
 
+    // Timer State
+    const [isRunning, setIsRunning] = useState(currentDraftStatus?.IS_RUNNING);
+
     const timeAllowed = !!currentDraftStatus?.TIME_PER_SELECTION
         ? Number(currentDraftStatus.TIME_PER_SELECTION)
         : 0;
+
+    const pauseTimer = () => setLeagueDraftIsRunning(leagueName, false);
+
+    const resumeTimer = () => setLeagueDraftIsRunning(leagueName, true);
+
+    const resetTimer = () => setLeagueDraftIsRunning(leagueName, false);
 
     return status === SESSION_CONSTANTS.LOADING
         ? <div>Loading...</div>
@@ -54,15 +62,15 @@ const DraftRoomContext = ({children}) => {
                 draftQueue,
                 roster,
                 leagueName,
-                isRunning,
+                isRunning: currentDraftStatus?.IS_RUNNING,
                 setIsRunning,
                 timeAllowed,
                 draftRules: leagueConfig.draft,
                 rosterConstruction: leagueConfig.roster_construction,
                 scoringRules: leagueConfig.scoring,
-                pauseTimer: () => setIsRunning(false),
-                resumeTimer: () => setIsRunning(true),
-                resetTimer: () => setIsRunning(false),
+                pauseTimer: pauseTimer,
+                resumeTimer: resumeTimer,
+                resetTimer: resetTimer,
                 setDraftQueue: setDraftQueue
             }}>
                 {children}
