@@ -9,15 +9,12 @@ import {stripStr} from "../../../lib/util/utils.js";
 
 const DraftTracker = () => {
     const {
-        user,
-        leagueDraft,
-        draftQueue,
         draftRules,
+        draftQueue,
+        isRunning,
+        leagueDraft,
         rosterConstruction,
-        resetTimer,
-        resumeTimer,
-        pauseTimer,
-        isRunning
+        user
     } = useContext(DraftContext);
     if (!leagueDraft || !draftRules || !rosterConstruction) return;
 
@@ -32,13 +29,10 @@ const DraftTracker = () => {
 
     return (<section className={styles.draft}>
         <Timer
-            isCommish={isUserCommissioner}
-            leagueDraft={leagueDraft}
             currentTime={timestampOfSelected}
+            isCommish={isUserCommissioner}
+            isRunning={isRunning}
             timeAllowed={timePerPick}
-            resetTimer={resetTimer}
-            resumeTimer={resumeTimer}
-            pauseTimer={pauseTimer}
         />
         <DraftQueue
             draftQueue={draftQueue}
