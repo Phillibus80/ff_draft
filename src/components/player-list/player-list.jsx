@@ -7,19 +7,21 @@ import {draftPlayer as draftPlayerDB} from "../../../lib/players/draftPlayer.js"
 import {SESSION_CONSTANTS} from "@/app-constants.js";
 import {useGetDraftPoolPlayers} from "@/hooks/players-hooks.jsx";
 import {DraftContext} from "@/context/draft-room-context/draft-room-context.jsx";
+import {stripStr} from "../../../lib/util/utils.js";
 
 const PlayerList = () => {
     const {
         authStatus,
         leagueName,
+        draftQueue,
         setDraftQueue,
         user,
         teamName,
-        resetTimer,
-        resumeTimer
+        resetTimer
     } = useContext(DraftContext);
     const [allPlayers, setAllPlayers] = useState({});
     const playerObjectArr = allPlayers && Object.values(allPlayers);
+    const isOnTheClock = stripStr(user) === stripStr(draftQueue[0]?.USERNAME);
 
     useGetDraftPoolPlayers(setAllPlayers, authStatus);
 
@@ -35,9 +37,9 @@ const PlayerList = () => {
         teamName
     );
 
-    return authStatus === SESSION_CONSTANTS.AUTHENTICATED
-        ? (
-            <section className={styles.playerListTable}>
+    switch (authStatus) {
+        case SESSION_CONSTANTS.AUTHENTICATED:
+            return <section className={styles.playerListTable}>
                 <table>
                     <thead>
                     <tr>
@@ -45,12 +47,13 @@ const PlayerList = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {getTableBody(playerObjectArr, draftPlayer, user)}
+                    {getTableBody(playerObjectArr, draftPlayer, isOnTheClock, user)}
                     </tbody>
                 </table>
-            </section>
-        )
-        : <div>Loading...</div>
+            </section>;
+        case SESSION_CONSTANTS.LOADING :
+            return <div>Loading...</div>;
+    }
 }
 
 export default PlayerList;
