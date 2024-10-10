@@ -35,6 +35,7 @@ const DraftTracker = () => {
             timeAllowed={timePerPick}
         />
         <DraftQueue
+            currentDraftPosition={currentPos}
             draftQueue={draftQueue}
         />
     </section>);
