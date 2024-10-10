@@ -14,7 +14,9 @@ const PlayerList = () => {
         leagueName,
         setDraftQueue,
         user,
-        teamName
+        teamName,
+        resetTimer,
+        resumeTimer
     } = useContext(DraftContext);
     const [allPlayers, setAllPlayers] = useState({});
     const playerObjectArr = allPlayers && Object.values(allPlayers);
@@ -23,6 +25,7 @@ const PlayerList = () => {
 
     const draftPlayerWithSession = (leagueName, username, teamName) => (player) => {
         setDraftQueue(prev => prev.slice(1));
+        resetTimer();
         return draftPlayerDB(leagueName, username, teamName, player);
     };
 

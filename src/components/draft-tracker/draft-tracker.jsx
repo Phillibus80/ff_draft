@@ -11,17 +11,17 @@ const DraftTracker = () => {
     const {
         draftRules,
         draftQueue,
-        isRunning,
+        setRemainingTime,
         leagueDraft,
         rosterConstruction,
-        user
+        user,
+        countDownText
     } = useContext(DraftContext);
     if (!leagueDraft || !draftRules || !rosterConstruction) return;
 
     const {
         COMMISSIONER: commish,
         CURRENT_DRAFT_POSITION: currentPos,
-        TIMESTAMP_OF_LAST_SELECTION: timestampOfSelected,
         TIME_PER_SELECTION: timePerPick
     } = leagueDraft;
 
@@ -29,9 +29,9 @@ const DraftTracker = () => {
 
     return (<section className={styles.draft}>
         <Timer
-            currentTime={timestampOfSelected}
+            countDownText={countDownText}
             isCommish={isUserCommissioner}
-            isRunning={isRunning}
+            setRemainingTime={setRemainingTime}
             timeAllowed={timePerPick}
         />
         <DraftQueue

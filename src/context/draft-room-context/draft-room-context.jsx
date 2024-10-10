@@ -12,6 +12,7 @@ import {
 import {SESSION_CONSTANTS} from "@/app-constants.js";
 import {useFirebaseSignInWithCustomToken, useRerouteIfUnauthenticated} from "@/hooks/hooks.jsx";
 import {setLeagueDraftIsRunning} from "../../../lib/league/leagueDraft.js";
+import {useCountDown, useUpdateTimerText} from "@/hooks/draft-tracker/timer-hooks.jsx";
 
 export const DraftContext = createContext(null);
 
@@ -34,17 +35,21 @@ const DraftRoomContext = ({children}) => {
     const [roster, setRoster] = useState({});
     const [draftQueue, setDraftQueue] = useState([]);
 
+    // Timer
+    const timeAllowed = !!currentDraftStatus?.TIME_PER_SELECTION
+        ? Number(currentDraftStatus.TIME_PER_SELECTION)
+        : 0;
+    const [remainingTime, setRemainingTime] = useState(timeAllowed);
+    const [countDownText, setCountDownText] = useState(null);
+
     // Hooks for handling the context state
     useGetLeagueConfig(leagueName, session, status, setLeagueConfig);
     useGetLeagueDraftDetails(session, status, setCurrentDraftStatus);
     useGetCurrentDraftedRoster(leagueName, session, status, setRoster);
     useGetManagers(currentDraftStatus, setManagerObjects);
     useGetDraftQueue(draftQueue, setDraftQueue, currentDraftStatus, leagueConfig.draft, managerObjects)
-
-    // Timer
-    const timeAllowed = !!currentDraftStatus?.TIME_PER_SELECTION
-        ? Number(currentDraftStatus.TIME_PER_SELECTION)
-        : 0;
+    useCountDown(currentDraftStatus?.IS_RUNNING, setRemainingTime, timeAllowed, currentDraftStatus?.TIMESTAMP_OF_LAST_SELECTION);
+    useUpdateTimerText(timeAllowed, remainingTime, setCountDownText);
 
     const startDraft = () =>
         Promise.all([
@@ -57,12 +62,16 @@ const DraftRoomContext = ({children}) => {
 
     const resumeTimer = () => setLeagueDraftIsRunning(leagueName, true);
 
-    const resetTimer = () => setLeagueDraftIsRunning(leagueName, false);
+    const resetTimer = () => Promise.all([
+        setRemainingTime(timeAllowed),
+        setLeagueDraftIsRunning(leagueName, true)
+    ]);
 
-    return status === SESSION_CONSTANTS.LOADING
-        ? <div>Loading...</div>
-        : (
-            <DraftContext.Provider value={{
+    switch (status) {
+        case SESSION_CONSTANTS.LOADING:
+            return <div>Loading...</div>
+        case SESSION_CONSTANTS.AUTHENTICATED:
+            return <DraftContext.Provider value={{
                 authStatus: status,
                 user: session?.user?.uid,
                 teamName: session?.user?.team,
@@ -71,7 +80,9 @@ const DraftRoomContext = ({children}) => {
                 roster,
                 leagueName,
                 isRunning: currentDraftStatus?.IS_RUNNING,
+                setRemainingTime,
                 timeAllowed,
+                countDownText,
                 draftRules: leagueConfig.draft,
                 rosterConstruction: leagueConfig.roster_construction,
                 scoringRules: leagueConfig.scoring,
@@ -82,8 +93,8 @@ const DraftRoomContext = ({children}) => {
                 setDraftQueue: setDraftQueue
             }}>
                 {children}
-            </DraftContext.Provider>
-        );
+            </DraftContext.Provider>;
+    }
 };
 
 export default DraftRoomContext;
