@@ -28,17 +28,23 @@ export const getTableHeaders = (playerArr = []) => playerArr[0] && Object.keys(p
  *
  * @param {Array<draftPlayerConfig>} playerArr - the array of players in the draft pool
  * @param {function} draftPlayerCallback - the setState callback that sets the drafted player
+ * @param {boolean} isOnTheClock - a flag indicating if the user is on the clock to draft or trade
  * @param {string} username - the username key
  * @return {false|Array<JSX.Element>} - the tr and td elements
  */
-export const getTableBody = (playerArr = [], draftPlayerCallback, username) => {
+export const getTableBody = (
+    playerArr = [],
+    draftPlayerCallback,
+    isOnTheClock,
+    username
+) => {
     return playerArr.length > 0
         && playerArr.map(
             player =>
                 <tr
                     key={`${player.NAME}_${PREVIOUS_YEAR}`}
                     style={{cursor: 'pointer'}}
-                    onClick={() => draftPlayerCallback(player, username)}
+                    onClick={() => isOnTheClock && draftPlayerCallback(player, username)}
                 >
                     {
                         Object.entries(player)
@@ -52,6 +58,15 @@ export const getTableBody = (playerArr = [], draftPlayerCallback, username) => {
                                 </td>
                             )
                     }
+                    <td>
+                        <button
+                            style={{cursor: 'pointer'}}
+                            onClick={() => draftPlayerCallback(player, username)}
+                            disabled={!isOnTheClock}
+                        >
+                            Draft
+                        </button>
+                    </td>
                 </tr>
         )
 };
