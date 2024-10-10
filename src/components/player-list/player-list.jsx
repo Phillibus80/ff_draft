@@ -12,12 +12,13 @@ import {stripStr} from "../../../lib/util/utils.js";
 const PlayerList = () => {
     const {
         authStatus,
-        leagueName,
         draftQueue,
+        isRunning,
+        leagueName,
+        resetTimer,
         setDraftQueue,
-        user,
         teamName,
-        resetTimer
+        user
     } = useContext(DraftContext);
     const [allPlayers, setAllPlayers] = useState({});
     const playerObjectArr = allPlayers && Object.values(allPlayers);
@@ -47,7 +48,7 @@ const PlayerList = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {getTableBody(playerObjectArr, draftPlayer, isOnTheClock, user)}
+                    {getTableBody(playerObjectArr, draftPlayer, isRunning, isOnTheClock, user)}
                     </tbody>
                 </table>
             </section>;
