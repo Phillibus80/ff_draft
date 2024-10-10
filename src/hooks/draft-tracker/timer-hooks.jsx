@@ -14,14 +14,7 @@ export const useCountDown = (isRunning, setRemainingTime, timeAllowed, currentTi
         if (!isRunning) return;
 
         const timerInterval = setInterval(() => {
-            setRemainingTime(prevTime => {
-                const newTime = prevTime - 1000;
-
-                if (newTime === 0) {
-                    return Number(timeAllowed);
-                }
-                return newTime;
-            });
+            setRemainingTime(prevTime => prevTime > 0 ? prevTime - 1000 : timeAllowed);
         }, 1000);
 
         return () => clearInterval(timerInterval);
@@ -48,5 +41,5 @@ export const useUpdateTimerText = (timeAllowed, remainingTime, setCountDownText)
             : `${min}:${sec < 10 ? '0' : ''}${sec}`;
 
         setCountDownText(result);
-    }, [remainingTime]);
+    }, [timeAllowed, remainingTime]);
 }
