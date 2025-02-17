@@ -15,19 +15,8 @@
     "USERNAME": "LittleJohn",
     "EMAIL": "john@little.com",
     "PASSWORD": "didIt",
-    "TEAM_NAME": "The Ball Busters",
+    "TEAM_NAME": "The Hail Mary Men",
     "TEAM_MOTO": "Something lame.",
-    "LEAGUES": {
-      "da_league": true
-    }
-  },
-  {
-    "NAME": "Simon",
-    "USERNAME": "SimonSAEYS",
-    "EMAIL": "muahaahaaaa@beans.com",
-    "PASSWORD": "beansDidIt",
-    "TEAM_NAME": "No Use For a Name",
-    "TEAM_MOTO": "Trabajo..Trabajo.",
     "LEAGUES": {
       "da_league": true
     }
