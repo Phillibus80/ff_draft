@@ -1,5 +1,12 @@
 This is a demo fantasy football draft application created with Next.js and Firebase's RealTime Database.
 
+## About
+This application is a demo of a fantasy football draft.  There is chat window and allows players to draft and trade players.
+There are currently three branches included:
+- master - the main branch, which uses Next.js and Firebase's RealTime database
+- draft-sqlite - a branch that implements tha draft window using SQLite
+- sockets-draft - a branch that implements the draft window using sockets
+
 ## Getting Started
 
 You will need to have the [firebase cli](https://firebase.google.com/docs/cli) and [Node v18+](https://nodejs.org/en)
