@@ -1,0 +1,7 @@
+{
+  "watch": ["server", "lib", "server.js"],
+  "ignore": ["lib/data/mock-data/**", "**/*.test.js"],
+  "ext": "js,mjs,json",
+  "signal": "SIGTERM",
+  "exec": "node --env-file-if-exists=.env server.js"
+}

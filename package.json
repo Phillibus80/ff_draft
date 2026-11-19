@@ -4,29 +4,49 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "NODE_ENV=development node server.js",
+    "dev": "NODE_ENV=development nodemon",
     "emul": "firebase emulators:start",
     "seed": "NODE_ENV=development node lib/data/seedFireBaseDB.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "lint": "next lint"
+    "start": "NODE_ENV=production node --env-file-if-exists=.env server.js",
+    "lint": "eslint .",
+    "db:up": "docker compose up -d --wait",
+    "db:down": "docker compose down",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcrypt": "^6.0.0",
+    "better-auth": "^1.7.25",
+    "drizzle-orm": "^0.45.4",
     "firebase": "^11.3.0",
     "firebase-admin": "^13.1.0",
     "firebase-functions": "^6.3.2",
-    "next": "^15.1.7",
-    "next-auth": "^5.0.0-beta.20",
-    "react": "^19",
-    "react-dom": "^19",
+    "next": "^16.4.6",
+    "next-auth": "^5.0.0-beta.32",
+    "postgres": "^3.4.9",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "slugify": "^1.6.6",
+    "socket.io": "^4.8.4",
+    "socket.io-client": "^4.8.4",
     "xss": "^1.0.15",
-    "zod": "^3.23.8"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "eslint": "^9.20.0",
-    "eslint-config-next": "15.1.7",
-    "sass": "^1.77.8"
+    "@playwright/test": "^1.65.1",
+    "drizzle-kit": "^0.31.11",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.6",
+    "nodemon": "^3.1.14",
+    "sass": "^1.77.8",
+    "vitest": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=22.9.0"
   }
 }
